@@ -1,0 +1,137 @@
+# The Fastfile stores the automation configuration that can be run with fastlane.
+# The Fastfile has to be inside your ./fastlane directory.
+
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+default_platform(:ios)
+
+lane :release do |options|
+    build_tag = options[:build_tag]
+    current_branch = git_branch
+    puts "*******#{current_branch}"
+    if not build_tag.nil? and not build_tag.empty?
+        sh("git", "fetch")
+        sh("git", "checkout", "tags/#{build_tag}") 
+    end
+
+    from_commit = options[:from_commit]
+    changelog = ""
+    if from_commit
+        changelog = changelog_from_git_commits(
+            between: [from_commit, (options[:build_tag] || "HEAD")],
+            pretty: "- %s",
+            date_format: "short",
+            merge_commit_filtering: "exclude_merges"
+        )
+    else
+        changelog = changelog_from_git_commits(
+            pretty: "- %s",
+            date_format: "short",
+            merge_commit_filtering: "exclude_merges"
+        )
+    end
+
+    if changelog.empty?
+        changelog = prompt(text: "Changelog: ")    
+    end
+    
+    if options[:version_number] && !options[:build_number]
+        options[:build_number] = (latest_testflight_build_number(username: options[:username], version: options[:version_number]) + 1).to_s
+    end
+    cocoapods(repo_update: true)
+    configurePlist(options)
+
+    disable_automatic_code_signing
+    match( 
+        type: 'appstore', 
+        readonly: true,
+        username: options[:devusername] ? options[:devusername] : options[:username]
+    )
+    gym(
+        clean: false, 
+        export_method: 'app-store', 
+        output_directory: 'build', 
+        scheme: 'wallet-debug'
+    )
+    begin
+	    pilot(
+	        username: options[:username],
+	        changelog: changelog,
+	        distribute_external: true,
+	        notify_external_testers: true,
+	        wait_for_uploaded_build: true,
+	        groups: ['Group Name 1', 'Group Name 2']
+	    )
+	rescue 
+		options[:pilot_success] = false
+	else
+		options[:pilot_success] = true
+	end
+    options[:dsyms_success] = dsyms(options)
+    options[:changelog] = changelog
+    slack_message(options)
+    if not build_tag.nil? and not build_tag.empty?
+        sh("git", "checkout", current_branch)
+    end
+end
+
+private_lane :configurePlist do |options|
+    UI.message("🕗 Let's update the plist params")
+  
+    info_plist_path = '../wallet/Info.plist'
+    plist = Xcodeproj::Plist.read_from_path(info_plist_path)
+  
+    plist["CFBundleShortVersionString"] = options[:version_number] if options[:version_number]
+    plist["CFBundleVersion"] = options[:build_number] if options[:build_number]
+  
+    Xcodeproj::Plist.write_to_path(plist, info_plist_path)
+    UI.success("Updated plist 💾.")
+end
+
+private_lane :dsyms do |options|
+    dsyms_success = false 
+    begin 
+        download_dsyms(
+            username: options[:username],
+            version: options[:version_number], 
+            build_number: options[:build_number]
+        )
+        upload_symbols_to_crashlytics(
+            api_token: 'your-crashlytics-api-token'
+        )
+        clean_build_artifacts
+    rescue 
+        dsyms_success = false
+    else 
+        dsyms_success = true
+    end
+    dsyms_success
+end
+
+private_lane :slack_message do |options|
+	pilot_success = options[:pilot_success] ? options[:pilot_success] : false 
+	dsyms_success = options[:dsyms_success] ? options[:dsyms_success] : false 
+	pretext = 'Build succeeded for wallet-debug'
+	message = 'The build has been correctly sent to TestFlight'
+	if pilot_success and not dsyms_success
+		pretext = 'Build succeeded for wallet-debug, failed to download dsyms from TestFlight.'
+		message = 'The build has been correctly sent to TestFlight, but download of debug symbols from TestFlight and upload to Crashlytics failed.'
+	elsif not pilot_success and dsyms_success
+		pretext = 'Build succeeded for wallet-debug, failed to distribute to external testers'
+		message = 'The build has been correctly sent to TestFlight, but the automatic distribution to external testers failed. Please distribute manually.'
+	elsif not pilot_success and not dsyms_success
+		pretext = 'Build failed for wallet-debug'
+		message = 'The build failed the upload to TestFlight.'
+    end
+    UI.message(pretext)
+    UI.message(message)
+end

@@ -1,0 +1,12 @@
+# The Appfile can be used to specify information that's used across all fastlane
+# tools, like your username or the app's bundle identifier.
+#
+# For more details, check out the documentation at:
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md
+
+app_identifier "Pietro-Basso.wallet" # the bundle identifier of your app
+team_name "Pietro Basso" # Developer Portal Team Name
+team_id "123456789" # Developer Portal Team ID
+
+# apple_id "apple@fastlane.tools" # Your Apple ID
+# username "apple@fastlane.tools" # Your Apple ID Username
