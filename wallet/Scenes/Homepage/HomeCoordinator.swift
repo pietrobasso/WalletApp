@@ -45,9 +45,12 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
     }
     
     private func setupOnboarding() {
-        let coordinator = OnboardingCoordinator(dependencies: dependencies)
-        coordinator.delegate = self
-        present(child: coordinator)
+        guard let onboardingCompleted = dependencies.userDefaultsService.value(for: .onboardingCompleted) as Bool?, onboardingCompleted else {
+            let coordinator = OnboardingCoordinator(dependencies: dependencies)
+            coordinator.delegate = self
+            present(child: coordinator)
+            return
+        }
     }
     
     private func add(page: TabPage) {
@@ -81,6 +84,16 @@ extension HomeCoordinator: CoordinatorDelegate {
 // MARK: - Extension: CardsCoordinatorDelegate
 extension HomeCoordinator: CardsCoordinatorDelegate {
     func showAddNewCard() {
-        debugPrint("should show add cards scene")
+        let coordinator = CardCoordinator(dependencies: dependencies, snapshotImage: viewController.view.makeSnapshot())
+        coordinator.delegate = self
+        present(child: coordinator, animated: false)
+        coordinator.start()
+    }
+}
+
+// MARK: - Extension: CardCoordinatorDelegate
+extension HomeCoordinator: CardCoordinatorDelegate {
+    func dismissCard(coordinator: Coordinator) {
+        dismiss(child: coordinator, animated: false)
     }
 }

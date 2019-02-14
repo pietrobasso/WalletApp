@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B20B9BBA2215A187005CEF61 /* TabPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BB92215A187005CEF61 /* TabPage.swift */; };
+		B20B9BC02215A91E005CEF61 /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBC2215A91E005CEF61 /* CardCoordinator.swift */; };
+		B20B9BC12215A91E005CEF61 /* CardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBD2215A91E005CEF61 /* CardPresenter.swift */; };
+		B20B9BC22215A91E005CEF61 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBE2215A91E005CEF61 /* CardViewController.swift */; };
+		B20B9BC32215A91E005CEF61 /* CardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBF2215A91E005CEF61 /* CardInteractor.swift */; };
+		B20B9BC62215B974005CEF61 /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BC52215B974005CEF61 /* UIView+Snapshot.swift */; };
 		B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5C22157E7C00DF308A /* RxKeyboard.swift */; };
 		B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5D22157E7C00DF308A /* RxStateful.swift */; };
 		B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6022157E8E00DF308A /* PageCoordinator.swift */; };
@@ -42,6 +47,11 @@
 /* Begin PBXFileReference section */
 		B106394C77A75180642AA1D8 /* Pods_wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20B9BB92215A187005CEF61 /* TabPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPage.swift; sourceTree = "<group>"; };
+		B20B9BBC2215A91E005CEF61 /* CardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
+		B20B9BBD2215A91E005CEF61 /* CardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresenter.swift; sourceTree = "<group>"; };
+		B20B9BBE2215A91E005CEF61 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		B20B9BBF2215A91E005CEF61 /* CardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInteractor.swift; sourceTree = "<group>"; };
+		B20B9BC52215B974005CEF61 /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
 		B2664D5C22157E7C00DF308A /* RxKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxKeyboard.swift; sourceTree = "<group>"; };
 		B2664D5D22157E7C00DF308A /* RxStateful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxStateful.swift; sourceTree = "<group>"; };
 		B2664D6022157E8E00DF308A /* PageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
@@ -120,6 +130,25 @@
 				B20B9BB92215A187005CEF61 /* TabPage.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B20B9BBB2215A8FD005CEF61 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BBC2215A91E005CEF61 /* CardCoordinator.swift */,
+				B20B9BBF2215A91E005CEF61 /* CardInteractor.swift */,
+				B20B9BBD2215A91E005CEF61 /* CardPresenter.swift */,
+				B20B9BBE2215A91E005CEF61 /* CardViewController.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		B20B9BC42215B961005CEF61 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BC52215B974005CEF61 /* UIView+Snapshot.swift */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		B2664D5922157E7C00DF308A /* Libraries */ = {
@@ -226,6 +255,7 @@
 		B2CCB1EE221563E90026479B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B20B9BBB2215A8FD005CEF61 /* Card */,
 				B2CCB20C221569E00026479B /* Cards */,
 				B2CCB207221568200026479B /* Homepage */,
 				B2CCB1EF221564610026479B /* Onboarding */,
@@ -284,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				B2CCB21722156F220026479B /* UIColor */,
+				B20B9BC42215B961005CEF61 /* UIView */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -441,21 +472,25 @@
 				B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */,
 				B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */,
 				B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */,
+				B20B9BC62215B974005CEF61 /* UIView+Snapshot.swift in Sources */,
 				B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */,
 				B2CCB1F42215648B0026479B /* OnboardingCoordinator.swift in Sources */,
 				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
 				B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */,
+				B20B9BC22215A91E005CEF61 /* CardViewController.swift in Sources */,
 				B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */,
 				B20B9BBA2215A187005CEF61 /* TabPage.swift in Sources */,
 				B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */,
 				B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */,
 				B2CCB221221571CF0026479B /* Theme.swift in Sources */,
+				B20B9BC12215A91E005CEF61 /* CardPresenter.swift in Sources */,
 				B2CCB21422156C590026479B /* CardsInteractor.swift in Sources */,
 				B2CCB1F52215648B0026479B /* OnboardingPresenter.swift in Sources */,
 				B2CCB21322156C590026479B /* CardsViewController.swift in Sources */,
 				B2CCB21122156C590026479B /* CardsCoordinator.swift in Sources */,
 				B2664D6922157E8E00DF308A /* TabCoordinator.swift in Sources */,
 				B2CCB1F62215648B0026479B /* OnboardingViewController.swift in Sources */,
+				B20B9BC32215A91E005CEF61 /* CardInteractor.swift in Sources */,
 				B2664D6722157E8E00DF308A /* RootCoordinator.swift in Sources */,
 				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
@@ -463,6 +498,7 @@
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
 				B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */,
+				B20B9BC02215A91E005CEF61 /* CardCoordinator.swift in Sources */,
 				B2CCB21222156C590026479B /* CardsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

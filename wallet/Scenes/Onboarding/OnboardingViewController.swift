@@ -81,7 +81,6 @@ class OnboardingViewController: UIViewController {
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
         button.layer.cornerRadius = Theme.current().buttonCornerRadius
-        button.layer.masksToBounds = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

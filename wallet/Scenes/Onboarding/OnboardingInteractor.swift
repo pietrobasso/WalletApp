@@ -45,6 +45,7 @@ class OnboardingInteractor: OnboardingViewControllerOutput, OnboardingPresenterI
         case .viewLoaded:
             return .empty()
         case .buttonTapped:
+            dependencies.userDefaultsService.set(value: true, for: .onboardingCompleted)
             delegate?.dismissAction()
             return .empty()
         }
