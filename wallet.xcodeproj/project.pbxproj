@@ -20,6 +20,12 @@
 		B2CCB1E422155C6A0026479B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2CCB1E322155C6A0026479B /* Assets.xcassets */; };
 		B2CCB1E722155C6A0026479B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CCB1E522155C6A0026479B /* LaunchScreen.storyboard */; };
 		B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB2002215650E0026479B /* UserDefaultsService.swift */; };
+		B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB208221568560026479B /* HomeCoordinator.swift */; };
+		B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB209221568560026479B /* HomeTabBarController.swift */; };
+		B2CCB21122156C590026479B /* CardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB20D22156C590026479B /* CardsCoordinator.swift */; };
+		B2CCB21222156C590026479B /* CardsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB20E22156C590026479B /* CardsPresenter.swift */; };
+		B2CCB21322156C590026479B /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB20F22156C590026479B /* CardsViewController.swift */; };
+		B2CCB21422156C590026479B /* CardsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21022156C590026479B /* CardsInteractor.swift */; };
 		B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21822156F220026479B /* UIColor+Hex.swift */; };
 		B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21922156F220026479B /* UIColor+Random.swift */; };
 		B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21D221571130026479B /* CustomNavigationControllerDelegate.swift */; };
@@ -54,6 +60,12 @@
 		B2CCB1E622155C6A0026479B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2CCB1E822155C6A0026479B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2CCB2002215650E0026479B /* UserDefaultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		B2CCB208221568560026479B /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		B2CCB209221568560026479B /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		B2CCB20D22156C590026479B /* CardsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCoordinator.swift; sourceTree = "<group>"; };
+		B2CCB20E22156C590026479B /* CardsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPresenter.swift; sourceTree = "<group>"; };
+		B2CCB20F22156C590026479B /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		B2CCB21022156C590026479B /* CardsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInteractor.swift; sourceTree = "<group>"; };
 		B2CCB21822156F220026479B /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B2CCB21922156F220026479B /* UIColor+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
 		B2CCB21D221571130026479B /* CustomNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationControllerDelegate.swift; sourceTree = "<group>"; };
@@ -148,9 +160,11 @@
 				B2CCB1C922155C690026479B /* AppDependencies.swift */,
 				B2CCB1E322155C6A0026479B /* Assets.xcassets */,
 				B2CCB21622156F0D0026479B /* Extensions */,
+				B2CCB1CB22155C690026479B /* fastlane */,
+				B2CCB1E822155C6A0026479B /* Info.plist */,
 				B2CCB1E522155C6A0026479B /* LaunchScreen.storyboard */,
 				B2664D5922157E7C00DF308A /* Libraries */,
-				B2CCB1CB22155C690026479B /* fastlane */,
+				B2CCB1EE221563E90026479B /* Scenes */,
 				B2CCB1FE221564F70026479B /* Services */,
 				B2CCB1DB22155C690026479B /* Supporting Files */,
 				B2CCB21F221571BD0026479B /* Theme */,
@@ -190,6 +204,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		B2CCB1EE221563E90026479B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B2CCB20C221569E00026479B /* Cards */,
+				B2CCB207221568200026479B /* Homepage */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		B2CCB1FE221564F70026479B /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +227,26 @@
 				B2CCB2002215650E0026479B /* UserDefaultsService.swift */,
 			);
 			path = UserDefaultsService;
+			sourceTree = "<group>";
+		};
+		B2CCB207221568200026479B /* Homepage */ = {
+			isa = PBXGroup;
+			children = (
+				B2CCB208221568560026479B /* HomeCoordinator.swift */,
+				B2CCB209221568560026479B /* HomeTabBarController.swift */,
+			);
+			path = Homepage;
+			sourceTree = "<group>";
+		};
+		B2CCB20C221569E00026479B /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				B2CCB20D22156C590026479B /* CardsCoordinator.swift */,
+				B2CCB21022156C590026479B /* CardsInteractor.swift */,
+				B2CCB20E22156C590026479B /* CardsPresenter.swift */,
+				B2CCB20F22156C590026479B /* CardsViewController.swift */,
+			);
+			path = Cards;
 			sourceTree = "<group>";
 		};
 		B2CCB21622156F0D0026479B /* Extensions */ = {
@@ -369,16 +412,22 @@
 				B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */,
 				B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */,
 				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
+				B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */,
 				B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */,
 				B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */,
 				B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */,
 				B2CCB221221571CF0026479B /* Theme.swift in Sources */,
+				B2CCB21422156C590026479B /* CardsInteractor.swift in Sources */,
+				B2CCB21322156C590026479B /* CardsViewController.swift in Sources */,
+				B2CCB21122156C590026479B /* CardsCoordinator.swift in Sources */,
 				B2664D6922157E8E00DF308A /* TabCoordinator.swift in Sources */,
 				B2664D6722157E8E00DF308A /* RootCoordinator.swift in Sources */,
 				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
+				B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */,
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
 				B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */,
+				B2CCB21222156C590026479B /* CardsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

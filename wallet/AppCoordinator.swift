@@ -29,8 +29,7 @@ class AppCoordinator: RootCoordinator {
     
     func showScene() {
         // Create a scene with lisca file templates (cmd+n)
-//        let coordinator = SceneCoordinator(dependencies: dependencies)
-//        coordinator.delegate = self
-//        switchTo(coordinator: coordinator)
+        let coordinator = HomeCoordinator(dependencies: dependencies)
+        switchTo(coordinator: coordinator)
     }
 }
