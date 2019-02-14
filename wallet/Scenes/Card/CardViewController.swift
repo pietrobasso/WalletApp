@@ -16,7 +16,7 @@ import RxCocoa
 protocol CardViewControllerInput {
     var title: Driver<String> { get }
     var snapshotImage: Driver<UIImage?> { get }
-    var dismissSnapshot: Driver<Void> { get }
+    var dismissCard: Driver<Void> { get }
 }
 
 protocol CardViewControllerOutput {
@@ -50,6 +50,15 @@ class CardViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    private lazy var cardBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = Theme.current().buttonCornerRadius
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     private lazy var dismissButton: UIButton = {
         let button = UIButton()
         button.setAttributedTitle(NSAttributedString(string: "Dismiss", attributes: [.foregroundColor: UIColor.Wallet.red,
@@ -62,6 +71,8 @@ class CardViewController: UIViewController {
     private var snapshotWidthConstraint: NSLayoutConstraint?
     private var snapshotHeightConstraint: NSLayoutConstraint?
     private var snapshotCenterYConstraint: NSLayoutConstraint?
+    private var cardBackgroundBottomConstraint: NSLayoutConstraint?
+    
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     
     // MARK: - Lifecycle
@@ -87,6 +98,7 @@ class CardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animateSnapshot(presenting: true)
+        animateCardBackground(presenting: true)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -117,10 +129,18 @@ class CardViewController: UIViewController {
         backgroundOverlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         backgroundOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        view.addSubview(dismissButton)
-        dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        dismissButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
-        dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        view.addSubview(cardBackgroundView)
+        cardBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        cardBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        cardBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        cardBackgroundView.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.6).isActive = true
+        cardBackgroundBottomConstraint = cardBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.size.height * 0.6)
+        cardBackgroundBottomConstraint?.isActive = true
+        
+        cardBackgroundView.addSubview(dismissButton)
+        dismissButton.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 20).isActive = true
+        dismissButton.bottomAnchor.constraint(equalTo: cardBackgroundView.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        dismissButton.trailingAnchor.constraint(equalTo: cardBackgroundView.trailingAnchor, constant: -20).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: Theme.current().buttonHeight).isActive = true
     }
     
@@ -131,8 +151,8 @@ class CardViewController: UIViewController {
         input.snapshotImage.asObservable()
             .bind(to: snapshotImageView.rx.image)
             .disposed(by: disposeBag)
-        input.dismissSnapshot.asObservable()
-            .bind(to: rx.dismissSnapshot)
+        input.dismissCard.asObservable()
+            .bind(to: rx.dismissCard)
             .disposed(by: disposeBag)
         dismissButton.rx.tap
             .asSignal()
@@ -161,29 +181,42 @@ class CardViewController: UIViewController {
                        initialSpringVelocity: 1,
                        options: presenting ? .curveEaseOut : .curveEaseIn,
                        animations: { [weak self] in
-            self?.snapshotImageView.layer.cornerRadius = presenting ? Theme.current().buttonCornerRadius : 0
-        }, completion: nil)
+                        self?.snapshotImageView.layer.cornerRadius = presenting ? Theme.current().buttonCornerRadius : 0
+            }, completion: nil)
         UIView.animate(withDuration: 0.6,
                        delay: 0,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 1,
                        options: presenting ? .curveEaseOut : .curveEaseIn,
                        animations: { [weak self] in
-            self?.configureSnapshot(presenting: presenting)
-            self?.setNeedsStatusBarAppearanceUpdate()
-            self?.view.layoutIfNeeded()
+                        self?.configureSnapshot(presenting: presenting)
+                        self?.setNeedsStatusBarAppearanceUpdate()
+                        self?.view.layoutIfNeeded()
         }) { [weak self] (finished) in
             if !presenting {
                 self?.output.action.onNext(.presentingCompleted)
             }
         }
     }
+    
+    fileprivate func animateCardBackground(presenting: Bool) {
+        UIView.animate(withDuration: 0.6,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: presenting ? .curveEaseOut : .curveEaseIn,
+                       animations: { [weak self] in
+                        self?.cardBackgroundBottomConstraint?.constant = presenting ? 0 : self?.view.frame.size.height ?? 1 * 0.6
+                        self?.view.layoutIfNeeded()
+            }, completion: nil)
+    }
 }
 
 extension Reactive where Base: CardViewController {
-    var dismissSnapshot: Binder<Void> {
+    var dismissCard: Binder<Void> {
         return Binder(base) { (viewController, _) in
             viewController.animateSnapshot(presenting: false)
+            viewController.animateCardBackground(presenting: false)
         }
     }
 }

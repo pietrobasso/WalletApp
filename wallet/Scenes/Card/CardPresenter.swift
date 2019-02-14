@@ -22,7 +22,7 @@ class CardPresenter: CardViewControllerInput {
     // MARK: CardViewControllerInput
     let title: Driver<String>
     let snapshotImage: Driver<UIImage?>
-    let dismissSnapshot: Driver<Void>
+    let dismissCard: Driver<Void>
     
     init(input: CardPresenterInput) {
         title = input.state
@@ -31,7 +31,7 @@ class CardPresenter: CardViewControllerInput {
         snapshotImage = input.state
             .map { $0.snapshotImage }
             .asDriver(onErrorJustReturn: nil)
-        dismissSnapshot = input.state
+        dismissCard = input.state
             .map { $0.shouldDismiss }
             .filter { $0 }
             .map { _ in () }
