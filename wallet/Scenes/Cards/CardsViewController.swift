@@ -67,5 +67,11 @@ class CardsViewController: UIViewController {
         input.title.asObservable()
             .bind(to: rx.title)
             .disposed(by: disposeBag)
+        input.title.asObservable()
+            .subscribe(onNext: { [weak self] (title) in
+                self?.title = title
+                self?.tabBarItem = UITabBarItem(title: title, image: #imageLiteral(resourceName: "icon-card").withRenderingMode(.alwaysTemplate), selectedImage: #imageLiteral(resourceName: "icon-card").withRenderingMode(.alwaysTemplate))
+            })
+            .disposed(by: disposeBag)
     }
 }

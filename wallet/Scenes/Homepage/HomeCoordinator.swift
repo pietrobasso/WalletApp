@@ -40,8 +40,15 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
     
     func start() {
         (tabController as? HomeTabBarController)?.customDelegate = self
+        setupOnboarding()
         addTab(coordinator: CardsCoordinator(dependencies: dependencies))
         // Add tabs with `func addTab(coordinator: Coordinator)`
+    }
+    
+    private func setupOnboarding() {
+        let coordinator = OnboardingCoordinator(dependencies: dependencies)
+        coordinator.delegate = self
+        present(child: coordinator)
     }
 }
 

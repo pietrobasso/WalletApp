@@ -19,6 +19,10 @@
 		B2CCB1CA22155C690026479B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C922155C690026479B /* AppDependencies.swift */; };
 		B2CCB1E422155C6A0026479B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2CCB1E322155C6A0026479B /* Assets.xcassets */; };
 		B2CCB1E722155C6A0026479B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CCB1E522155C6A0026479B /* LaunchScreen.storyboard */; };
+		B2CCB1F42215648B0026479B /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1F02215648B0026479B /* OnboardingCoordinator.swift */; };
+		B2CCB1F52215648B0026479B /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1F12215648B0026479B /* OnboardingPresenter.swift */; };
+		B2CCB1F62215648B0026479B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1F22215648B0026479B /* OnboardingViewController.swift */; };
+		B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1F32215648B0026479B /* OnboardingInteractor.swift */; };
 		B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB2002215650E0026479B /* UserDefaultsService.swift */; };
 		B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB208221568560026479B /* HomeCoordinator.swift */; };
 		B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB209221568560026479B /* HomeTabBarController.swift */; };
@@ -59,6 +63,10 @@
 		B2CCB1E322155C6A0026479B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2CCB1E622155C6A0026479B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2CCB1E822155C6A0026479B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2CCB1F02215648B0026479B /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		B2CCB1F12215648B0026479B /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		B2CCB1F22215648B0026479B /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		B2CCB1F32215648B0026479B /* OnboardingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractor.swift; sourceTree = "<group>"; };
 		B2CCB2002215650E0026479B /* UserDefaultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		B2CCB208221568560026479B /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B2CCB209221568560026479B /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
@@ -209,8 +217,20 @@
 			children = (
 				B2CCB20C221569E00026479B /* Cards */,
 				B2CCB207221568200026479B /* Homepage */,
+				B2CCB1EF221564610026479B /* Onboarding */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		B2CCB1EF221564610026479B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B2CCB1F02215648B0026479B /* OnboardingCoordinator.swift */,
+				B2CCB1F32215648B0026479B /* OnboardingInteractor.swift */,
+				B2CCB1F12215648B0026479B /* OnboardingPresenter.swift */,
+				B2CCB1F22215648B0026479B /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		B2CCB1FE221564F70026479B /* Services */ = {
@@ -411,6 +431,7 @@
 				B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */,
 				B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */,
 				B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */,
+				B2CCB1F42215648B0026479B /* OnboardingCoordinator.swift in Sources */,
 				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
 				B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */,
 				B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */,
@@ -418,14 +439,17 @@
 				B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */,
 				B2CCB221221571CF0026479B /* Theme.swift in Sources */,
 				B2CCB21422156C590026479B /* CardsInteractor.swift in Sources */,
+				B2CCB1F52215648B0026479B /* OnboardingPresenter.swift in Sources */,
 				B2CCB21322156C590026479B /* CardsViewController.swift in Sources */,
 				B2CCB21122156C590026479B /* CardsCoordinator.swift in Sources */,
 				B2664D6922157E8E00DF308A /* TabCoordinator.swift in Sources */,
+				B2CCB1F62215648B0026479B /* OnboardingViewController.swift in Sources */,
 				B2664D6722157E8E00DF308A /* RootCoordinator.swift in Sources */,
 				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
 				B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */,
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
+				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
 				B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */,
 				B2CCB21222156C590026479B /* CardsPresenter.swift in Sources */,
 			);

@@ -125,14 +125,14 @@ public enum Theme: String {
     var buttonHeight: CGFloat {
         switch self {
         case .default:
-            return 40
+            return 50
         }
     }
     
     var buttonCornerRadius: CGFloat {
         switch self {
         case .default:
-            return 20
+            return 10
         }
     }
 }
