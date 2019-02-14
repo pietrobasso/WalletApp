@@ -24,6 +24,7 @@ class AppCoordinator: RootCoordinator {
     
     func start() {
         showScene()
+        Theme.apply(theme: Theme.current())
     }
     
     func showScene() {

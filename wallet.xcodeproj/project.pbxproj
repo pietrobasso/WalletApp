@@ -22,6 +22,8 @@
 		B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB2002215650E0026479B /* UserDefaultsService.swift */; };
 		B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21822156F220026479B /* UIColor+Hex.swift */; };
 		B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21922156F220026479B /* UIColor+Random.swift */; };
+		B2CCB221221571CF0026479B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB220221571CF0026479B /* Theme.swift */; };
+		B2CCB223221571F60026479B /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB222221571F60026479B /* ColorPalette.swift */; };
 		ED6C6E0EF4E2BAB439512562 /* Pods_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B106394C77A75180642AA1D8 /* Pods_wallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		B2CCB2002215650E0026479B /* UserDefaultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		B2CCB21822156F220026479B /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B2CCB21922156F220026479B /* UIColor+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
+		B2CCB220221571CF0026479B /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		B2CCB222221571F60026479B /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		E442473A9B84762FEB594954 /* Pods-wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wallet.release.xcconfig"; path = "Target Support Files/Pods-wallet/Pods-wallet.release.xcconfig"; sourceTree = "<group>"; };
 		F24681038E41C20614C1325C /* Pods-wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wallet.debug.xcconfig"; path = "Target Support Files/Pods-wallet/Pods-wallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +151,7 @@
 				B2CCB1CB22155C690026479B /* fastlane */,
 				B2CCB1FE221564F70026479B /* Services */,
 				B2CCB1DB22155C690026479B /* Supporting Files */,
+				B2CCB21F221571BD0026479B /* Theme */,
 			);
 			path = wallet;
 			sourceTree = "<group>";
@@ -213,6 +218,15 @@
 				B2CCB21922156F220026479B /* UIColor+Random.swift */,
 			);
 			path = UIColor;
+			sourceTree = "<group>";
+		};
+		B2CCB21F221571BD0026479B /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B2CCB222221571F60026479B /* ColorPalette.swift */,
+				B2CCB220221571CF0026479B /* Theme.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,10 +357,14 @@
 				B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */,
 				B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */,
 				B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */,
+				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
 				B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */,
 				B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */,
 				B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */,
+				B2CCB221221571CF0026479B /* Theme.swift in Sources */,
 				B2664D6922157E8E00DF308A /* TabCoordinator.swift in Sources */,
+				B2664D6722157E8E00DF308A /* RootCoordinator.swift in Sources */,
+				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
 				B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */,
 			);
