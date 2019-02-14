@@ -23,6 +23,7 @@ class CardPresenter: CardViewControllerInput {
     let title: Driver<String>
     let snapshotImage: Driver<UIImage?>
     let dismissCard: Driver<Void>
+    let mainButtonTitle: Driver<String>
     
     init(input: CardPresenterInput) {
         title = input.state
@@ -36,5 +37,8 @@ class CardPresenter: CardViewControllerInput {
             .filter { $0 }
             .map { _ in () }
             .asDriver(onErrorJustReturn: ())
+        mainButtonTitle = input.state
+            .map { _ in "Dismiss" }
+            .asDriver(onErrorJustReturn: "")
     }
 }

@@ -17,6 +17,7 @@ protocol CardViewControllerInput {
     var title: Driver<String> { get }
     var snapshotImage: Driver<UIImage?> { get }
     var dismissCard: Driver<Void> { get }
+    var mainButtonTitle: Driver<String> { get }
 }
 
 protocol CardViewControllerOutput {
@@ -61,10 +62,10 @@ class CardViewController: UIViewController {
     }()
     private lazy var dismissButton: UIButton = {
         let button = UIButton()
-        button.setAttributedTitle(NSAttributedString(string: "Dismiss", attributes: [.foregroundColor: UIColor.Wallet.red,
-                                                                                     .font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)]), for: .normal)
+        button.backgroundColor = UIColor.Wallet.red
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
         button.layer.cornerRadius = Theme.current().buttonCornerRadius
-        button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -72,7 +73,6 @@ class CardViewController: UIViewController {
     private var snapshotHeightConstraint: NSLayoutConstraint?
     private var snapshotCenterYConstraint: NSLayoutConstraint?
     private var cardBackgroundBottomConstraint: NSLayoutConstraint?
-    
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     
     // MARK: - Lifecycle
@@ -153,6 +153,9 @@ class CardViewController: UIViewController {
             .disposed(by: disposeBag)
         input.dismissCard.asObservable()
             .bind(to: rx.dismissCard)
+            .disposed(by: disposeBag)
+        input.mainButtonTitle.asObservable()
+            .bind(to: dismissButton.rx.title())
             .disposed(by: disposeBag)
         dismissButton.rx.tap
             .asSignal()
