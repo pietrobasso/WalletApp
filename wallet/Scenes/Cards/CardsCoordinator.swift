@@ -11,12 +11,16 @@
 
 import UIKit
 
+protocol CardsCoordinatorDelegate: AnyObject {
+    func showAddNewCard()
+}
+
 class CardsCoordinator: NavigationCoordinator {
     var childrenCoordinators: [Coordinator] = []
     let viewController: UIViewController
     let navigationController: UINavigationController
 
-    weak var delegate: CoordinatorDelegate?
+    weak var delegate: CardsCoordinatorDelegate?
     private let navigationControllerDelegate = CustomNavigationControllerDelegate { (navigationController, viewController, animated) in
         navigationController.navigationBar.prefersLargeTitles = true
     }
@@ -48,7 +52,7 @@ class CardsCoordinator: NavigationCoordinator {
 
 // MARK: - Extension: CardsInteractorDelegate
 extension CardsCoordinator: CardsInteractorDelegate {
-    func dismissAction() {
-        delegate?.dismiss(coordinator: self)
+    func addCard() {
+        delegate?.showAddNewCard()
     }
 }

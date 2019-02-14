@@ -14,7 +14,7 @@ import RxSwift
 import RxCocoa
 
 protocol CardsInteractorDelegate: class {
-    func dismissAction()
+    func addCard()
 }
 
 struct CardsState {
@@ -38,5 +38,15 @@ class CardsInteractor: CardsViewControllerOutput, CardsPresenterInput, RxStatefu
     
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
+    }
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .viewLoaded:
+            return .empty()
+        case .addButtonTapped:
+            delegate?.addCard()
+            return .empty()
+        }
     }
 }

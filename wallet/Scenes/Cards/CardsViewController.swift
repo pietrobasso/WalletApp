@@ -23,6 +23,7 @@ protocol CardsViewControllerOutput {
 
 enum CardsAction {
     case viewLoaded
+    case addButtonTapped
 }
 
 class CardsViewController: UIViewController {
@@ -59,6 +60,7 @@ class CardsViewController: UIViewController {
                                             startPoint: CGPoint(x: 1, y: 1),
                                             endPoint: CGPoint(x: 0, y: 0))
         view.layer.insertSublayer(gradientLayer, at: 0)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonTapped))
     }
     
     private func addSubviews() {}
@@ -70,8 +72,12 @@ class CardsViewController: UIViewController {
         input.title.asObservable()
             .subscribe(onNext: { [weak self] (title) in
                 self?.title = title
-                self?.tabBarItem = UITabBarItem(title: title, image: #imageLiteral(resourceName: "icon-card").withRenderingMode(.alwaysTemplate), selectedImage: #imageLiteral(resourceName: "icon-card").withRenderingMode(.alwaysTemplate))
+                self?.tabBarItem.title = title
             })
             .disposed(by: disposeBag)
+    }
+    
+    @objc private func addButtonTapped() {
+        output.action.onNext(.addButtonTapped)
     }
 }

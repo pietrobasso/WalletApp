@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20B9BBA2215A187005CEF61 /* TabPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BB92215A187005CEF61 /* TabPage.swift */; };
 		B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5C22157E7C00DF308A /* RxKeyboard.swift */; };
 		B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5D22157E7C00DF308A /* RxStateful.swift */; };
 		B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6022157E8E00DF308A /* PageCoordinator.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		B106394C77A75180642AA1D8 /* Pods_wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B20B9BB92215A187005CEF61 /* TabPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPage.swift; sourceTree = "<group>"; };
 		B2664D5C22157E7C00DF308A /* RxKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxKeyboard.swift; sourceTree = "<group>"; };
 		B2664D5D22157E7C00DF308A /* RxStateful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxStateful.swift; sourceTree = "<group>"; };
 		B2664D6022157E8E00DF308A /* PageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B20B9BB82215A170005CEF61 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BB92215A187005CEF61 /* TabPage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B2664D5922157E7C00DF308A /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 				B2CCB1E822155C6A0026479B /* Info.plist */,
 				B2CCB1E522155C6A0026479B /* LaunchScreen.storyboard */,
 				B2664D5922157E7C00DF308A /* Libraries */,
+				B20B9BB82215A170005CEF61 /* Models */,
 				B2CCB1EE221563E90026479B /* Scenes */,
 				B2CCB1FE221564F70026479B /* Services */,
 				B2CCB1DB22155C690026479B /* Supporting Files */,
@@ -435,6 +446,7 @@
 				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
 				B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */,
 				B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */,
+				B20B9BBA2215A187005CEF61 /* TabPage.swift in Sources */,
 				B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */,
 				B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */,
 				B2CCB221221571CF0026479B /* Theme.swift in Sources */,

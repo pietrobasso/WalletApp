@@ -41,14 +41,27 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
     func start() {
         (tabController as? HomeTabBarController)?.customDelegate = self
         setupOnboarding()
-        addTab(coordinator: CardsCoordinator(dependencies: dependencies))
-        // Add tabs with `func addTab(coordinator: Coordinator)`
+        add(page: .cards)
     }
     
     private func setupOnboarding() {
         let coordinator = OnboardingCoordinator(dependencies: dependencies)
         coordinator.delegate = self
         present(child: coordinator)
+    }
+    
+    private func add(page: TabPage) {
+        let tabBarItem = UITabBarItem(title: nil, image: page.descriptor.image, selectedImage: page.descriptor.selectedImage)
+        switch page {
+        case .cards:
+            let coordinator = CardsCoordinator(dependencies: dependencies)
+            coordinator.viewController.tabBarItem = tabBarItem
+            coordinator.delegate = self
+            addTab(coordinator: coordinator)
+            coordinator.start()
+        default:
+            break
+        }
     }
 }
 
@@ -62,5 +75,12 @@ extension HomeCoordinator: HomeTabBarControllerDelegate {
 extension HomeCoordinator: CoordinatorDelegate {
     func dismiss(coordinator: Coordinator) {
         dismiss(child: coordinator)
+    }
+}
+
+// MARK: - Extension: CardsCoordinatorDelegate
+extension HomeCoordinator: CardsCoordinatorDelegate {
+    func showAddNewCard() {
+        debugPrint("should show add cards scene")
     }
 }
