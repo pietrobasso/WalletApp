@@ -38,7 +38,7 @@ class CardPresenter: CardViewControllerInput {
             .map { _ in () }
             .asDriver(onErrorJustReturn: ())
         mainButtonTitle = input.state
-            .map { _ in "Dismiss" }
+            .map { _ in "Done" }
             .asDriver(onErrorJustReturn: "")
     }
 }
