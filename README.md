@@ -5,7 +5,6 @@
     <a href="#about-lisca">About</a> 
   • <a href="#compatibility">Compatibility</a>
   • <a href="#advanced-configuration">Advanced Configuration</a>
-  • <a href="#additional-micro-libraries">Additional micro-libraries</a>
   • <a href="#app-architecture">App Architecture</a>
   • <a href="#project-setup">Project Setup</a>
   • <a href="#usage">Usage</a>
@@ -31,10 +30,6 @@ If you need to add a test environment you should:
 - Create a new build scheme and set it to run with the Debug-test configuration and to archive with the Release-test configuration.
 
 With this configuration in place you can run and archive applications with test or production environments and switch from one to the other simply by selecting the scheme in the Xcode top bar, next to the stop button.
-
-## Additional micro-libraries
-
-Paragraph where we explain how to install additional micro-libraries from lisca Application Starter Kit.
 
 ## App Architecture
 A mobile application development usually starts from a mockup, containing the flow of the app view by view, and a specification document containing the app features. Starting from the mockup we can easily divide the app into scenes, where each scene represents a full screen view, while starting from the spec document we can define what data is being manipulated and how. A clear separation of the data layer from the scenes layer with a clear interface allows to develop them indipendently, to easily mock services and to test thoroughly every part of the app. We identified some basic architectural components to guide the development and keep the concerns separated. Keep in mind that these are only guidelines that can be adapted to each project depending on its complexity (i.e.: you should't create a 6 components architecture for a project printing 'hello world' to the console...).

@@ -1,17 +1,12 @@
 def shared_pods
 # Async
-  # pod 'RxSwift'
-  # pod 'RxCocoa'
+  pod 'RxSwift'
+  pod 'RxCocoa'
   # pod 'RxOptional'
 # Graphics
   # pod 'Kingfisher'
-# Device
-  # pod 'DeviceKit'
-# Deploying
-  # pod 'Fabric'
-  # pod 'Crashlytics'
 # Others
-  # pod 'DeepDiff'
+  
 end
 
 platform :ios, '10.0'
