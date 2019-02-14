@@ -19,6 +19,7 @@
 		B2CCB1CA22155C690026479B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C922155C690026479B /* AppDependencies.swift */; };
 		B2CCB1E422155C6A0026479B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2CCB1E322155C6A0026479B /* Assets.xcassets */; };
 		B2CCB1E722155C6A0026479B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CCB1E522155C6A0026479B /* LaunchScreen.storyboard */; };
+		B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB2002215650E0026479B /* UserDefaultsService.swift */; };
 		B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21822156F220026479B /* UIColor+Hex.swift */; };
 		B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB21922156F220026479B /* UIColor+Random.swift */; };
 		ED6C6E0EF4E2BAB439512562 /* Pods_wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B106394C77A75180642AA1D8 /* Pods_wallet.framework */; };
@@ -49,6 +50,7 @@
 		B2CCB1E322155C6A0026479B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2CCB1E622155C6A0026479B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2CCB1E822155C6A0026479B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2CCB2002215650E0026479B /* UserDefaultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		B2CCB21822156F220026479B /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B2CCB21922156F220026479B /* UIColor+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
 		E442473A9B84762FEB594954 /* Pods-wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wallet.release.xcconfig"; path = "Target Support Files/Pods-wallet/Pods-wallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +180,22 @@
 				B2CCB1E222155C690026479B /* lisca-scene.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		B2CCB1FE221564F70026479B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B2CCB1FF2215650E0026479B /* UserDefaultsService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B2CCB1FF2215650E0026479B /* UserDefaultsService */ = {
+			isa = PBXGroup;
+			children = (
+				B2CCB2002215650E0026479B /* UserDefaultsService.swift */,
+			);
+			path = UserDefaultsService;
 			sourceTree = "<group>";
 		};
 		B2CCB21622156F0D0026479B /* Extensions */ = {
