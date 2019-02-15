@@ -15,7 +15,7 @@ import RxCocoa
 
 protocol CardsViewControllerInput {
     var title: Driver<String> { get }
-    var dataSource: Driver<[CardCellViewModel]> { get }
+    var dataSource: Driver<[Card.Descriptor]> { get }
 }
 
 protocol CardsViewControllerOutput {
@@ -25,6 +25,7 @@ protocol CardsViewControllerOutput {
 enum CardsAction {
     case viewLoaded
     case addButtonTapped
+    case didTapCellAt(IndexPath)
 }
 
 class CardsViewController: UIViewController {
@@ -32,7 +33,7 @@ class CardsViewController: UIViewController {
     let input: CardsViewControllerInput
     let output: CardsViewControllerOutput
     private let disposeBag = DisposeBag()
-    private var dataSource = [CardCellViewModel]()
+    private var dataSource = [Card.Descriptor]()
     
     // MARK: - Views
     private lazy var collectionView: UICollectionView = {
@@ -117,6 +118,13 @@ extension CardsViewController: UICollectionViewDataSource {
         guard let viewModel = dataSource[safe: indexPath.row] else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(for: indexPath) as CardCell
         cell.configure(with: viewModel)
+        cell.rx.tap
+            .asSignal()
+            .debounce(0.1)
+            .emit(onNext: { [weak self] _ in
+                self?.output.action.onNext(.didTapCellAt(indexPath))
+            })
+            .disposed(by: cell.rx.disposeBag)
         return cell
     }
     
@@ -125,7 +133,5 @@ extension CardsViewController: UICollectionViewDataSource {
 
 // MARK: - Extension: UICollectionViewDelegate
 extension CardsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output.action.onNext(.addButtonTapped)
-    }
+    
 }

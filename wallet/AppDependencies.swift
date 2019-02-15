@@ -10,7 +10,7 @@ import Foundation
 
 // The dependencies protocol defines what services it provides by adopting the services providers protocols
 // i.e.: protocol AppDependencies: MyServiceProvider, MyManagerProvider { }
-protocol AppDependencies: UserDefaultsServiceProvider { }
+protocol AppDependencies: UserDefaultsServiceProvider, CardsManagerProvider { }
 
 /// Defines all the dependenceis to be injected throughout the app.
 class AppDependenciesProvider: AppDependencies {
@@ -24,7 +24,7 @@ class AppDependenciesProvider: AppDependencies {
 
     // MARK: - Managers 
     // Managers can depend on services 
-//    lazy var myManager: MyManager = {
-//        return MyManagerImplementation(dependencies: AppDependenciesProvider.provider)
-//    }
+    lazy var cardsManager: CardsManager = {
+        return MockedCardsManager(cardsCount: 5)
+    }()
 }

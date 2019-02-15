@@ -13,6 +13,7 @@ import UIKit
 
 protocol CardsCoordinatorDelegate: AnyObject {
     func showAddNewCard()
+    func show(card: Card)
 }
 
 class CardsCoordinator: NavigationCoordinator {
@@ -54,5 +55,9 @@ class CardsCoordinator: NavigationCoordinator {
 extension CardsCoordinator: CardsInteractorDelegate {
     func addCard() {
         delegate?.showAddNewCard()
+    }
+    
+    func show(card: Card) {
+        delegate?.show(card: card)
     }
 }

@@ -88,7 +88,11 @@ extension HomeCoordinator: CoordinatorDelegate {
 // MARK: - Extension: CardsCoordinatorDelegate
 extension HomeCoordinator: CardsCoordinatorDelegate {
     func showAddNewCard() {
-        let coordinator = CardCoordinator(dependencies: dependencies, snapshotImage: viewController.view.makeSnapshot())
+        debugPrint("unimplemented")
+    }
+    
+    func show(card: Card) {
+        let coordinator = CardCoordinator(dependencies: dependencies, card: card, snapshotImage: viewController.view.makeSnapshot())
         coordinator.delegate = self
         present(child: coordinator, animated: false)
         coordinator.start()

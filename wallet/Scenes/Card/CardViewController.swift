@@ -14,9 +14,11 @@ import RxSwift
 import RxCocoa
 
 protocol CardViewControllerInput {
-    var title: Driver<String> { get }
     var snapshotImage: Driver<UIImage?> { get }
     var animateCard: Driver<Bool> { get }
+    var title: Driver<String> { get }
+    var mainEmoji: Driver<String> { get }
+    var description: Driver<String> { get }
     var mainButtonTitle: Driver<String> { get }
 }
 
@@ -60,6 +62,37 @@ class CardViewController: UIViewController {
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 80, weight: UIFont.Weight.black)
+        label.textColor = UIColor.Wallet.black.fillColor
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     private lazy var dismissButton: UIButton = {
         let button = HighlightedButton()
@@ -137,11 +170,21 @@ class CardViewController: UIViewController {
         cardBackgroundBottomConstraint = cardBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.size.height * cardHeight)
         cardBackgroundBottomConstraint?.isActive = true
         
+        cardBackgroundView.addSubview(stackView)
+        stackView.topAnchor.constraint(equalTo: cardBackgroundView.topAnchor, constant: 100).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 20).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: cardBackgroundView.trailingAnchor, constant: -20).isActive = true
+        
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(descriptionLabel)
+        
         cardBackgroundView.addSubview(dismissButton)
         dismissButton.leadingAnchor.constraint(equalTo: cardBackgroundView.leadingAnchor, constant: 20).isActive = true
         dismissButton.bottomAnchor.constraint(equalTo: cardBackgroundView.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         dismissButton.trailingAnchor.constraint(equalTo: cardBackgroundView.trailingAnchor, constant: -20).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: Theme.current().buttonHeight).isActive = true
+        
+        stackView.bottomAnchor.constraint(equalTo: dismissButton.topAnchor, constant: -30).isActive = true
     }
     
     private func setupBindings() {
@@ -153,6 +196,12 @@ class CardViewController: UIViewController {
             .disposed(by: disposeBag)
         input.animateCard.asObservable()
             .bind(to: rx.animateCard)
+            .disposed(by: disposeBag)
+        input.title.asObservable()
+            .bind(to: titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        input.description.asObservable()
+            .bind(to: descriptionLabel.rx.text)
             .disposed(by: disposeBag)
         input.mainButtonTitle.asObservable()
             .bind(to: dismissButton.rx.title())

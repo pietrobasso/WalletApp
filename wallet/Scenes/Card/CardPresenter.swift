@@ -21,13 +21,24 @@ class CardPresenter: CardViewControllerInput {
     
     // MARK: CardViewControllerInput
     let title: Driver<String>
+    let mainEmoji: Driver<String>
+    let description: Driver<String>
     let snapshotImage: Driver<UIImage?>
     let animateCard: Driver<Bool>
     let mainButtonTitle: Driver<String>
     
     init(input: CardPresenterInput) {
         title = input.state
-            .map { state -> String in "Your Card" }
+            .map { $0.card.descriptor.title }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+        mainEmoji = input.state
+            .map { _ in "✨💳✨" }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+        description = input.state
+            .map { $0.card.descriptor.welcomeText }
+            .distinctUntilChanged()
             .asDriver(onErrorJustReturn: "")
         snapshotImage = input.state
             .map { $0.snapshotImage }
@@ -39,6 +50,7 @@ class CardPresenter: CardViewControllerInput {
             .asDriver(onErrorJustReturn: false)
         mainButtonTitle = input.state
             .map { _ in "Done" }
+            .distinctUntilChanged()
             .asDriver(onErrorJustReturn: "")
     }
 }

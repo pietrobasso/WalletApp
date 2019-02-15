@@ -21,8 +21,8 @@ class CardCoordinator: Coordinator {
     
     weak var delegate: CardCoordinatorDelegate?
     
-    init(dependencies: AppDependencies, snapshotImage: UIImage?) {
-        let interactor = CardInteractor(dependencies: dependencies, snapshotImage: snapshotImage)
+    init(dependencies: AppDependencies, card: Card, snapshotImage: UIImage?) {
+        let interactor = CardInteractor(dependencies: dependencies, card: card, snapshotImage: snapshotImage)
         let presenter = CardPresenter(input: interactor)
         viewController = CardViewController(input: presenter, output: interactor)
         interactor.delegate = self

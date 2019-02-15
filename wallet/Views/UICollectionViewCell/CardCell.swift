@@ -10,23 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-struct CardCellViewModel: Equatable, Hashable {
-    let title: String
-    let description: String
-    let badgeNumber: Int
-    let color: UIColor.Wallet
-}
-
-extension CardCellViewModel {
-    static var random: CardCellViewModel {
-        let title = ["Pam", "Despar", "IKEA", "MediaMarkt", "Accessorize", "Zara", "H&M", "Hofer", "Lidl"].randomElement() ?? "Zara"
-        let description = [String(Int.random(in: 0...200)), "Points"].joined(separator: " ")
-        let badgeNumber = Int.random(in: 0...1)
-        let color = UIColor.Wallet.brightColors.randomElement() ?? .red
-        return CardCellViewModel(title: title, description: description, badgeNumber: badgeNumber, color: color)
-    }
-}
-
 class CardCell: UICollectionViewCell, Reusable {
     
     // MARK: - Variables
@@ -93,14 +76,14 @@ class CardCell: UICollectionViewCell, Reusable {
     
     // MARK: - Setup
     
-    func configure(with viewModel: CardCellViewModel) {
-        titleLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.description
+    func configure(with descriptor: Card.Descriptor) {
+        titleLabel.text = descriptor.title
+        descriptionLabel.text = descriptor.description
         button.gradientLayer = CAGradientLayer(frame: buttonContainer.frame,
-                                               colors: viewModel.color.gradientColors,
+                                               colors: descriptor.color.gradientColors,
                                                startPoint: CGPoint(x: 0, y: 0),
                                                endPoint: CGPoint(x: 1, y: 1))
-        setupBadge(viewModel.badgeNumber)
+        setupBadge(descriptor.badgeCount)
     }
     
     private func setupAppearance() {
@@ -153,9 +136,9 @@ extension Reactive where Base: CardCell {
         return base.buttonContainer.rx.tap
     }
     
-    var viewModel: Binder<CardCellViewModel> {
-        return Binder(base) { (cell, viewModel) in
-            cell.configure(with: viewModel)
+    var viewModel: Binder<Card.Descriptor> {
+        return Binder(base) { (cell, descriptor) in
+            cell.configure(with: descriptor)
         }
     }
 }

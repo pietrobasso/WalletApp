@@ -15,23 +15,24 @@ import RxCocoa
 
 protocol CardsInteractorDelegate: class {
     func addCard()
+    func show(card: Card)
 }
 
 struct CardsState {
-    
+    var cards: [Card]
 }
 
 class CardsInteractor: CardsViewControllerOutput, CardsPresenterInput, RxStateful {
     
     typealias Action = CardsAction
     typealias State = CardsState
-    typealias Dependencies = UserDefaultsServiceProvider
+    typealias Dependencies = UserDefaultsServiceProvider & CardsManagerProvider
     
     enum Mutation {
-        
+        case setCards([Card])
     }
     
-    let initialState = CardsState()
+    let initialState = CardsState(cards: [])
     let dependencies: Dependencies
     
     weak var delegate: CardsInteractorDelegate?
@@ -43,10 +44,30 @@ class CardsInteractor: CardsViewControllerOutput, CardsPresenterInput, RxStatefu
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewLoaded:
-            return .empty()
+            return dependencies.cardsManager.cards
+                .map { Mutation.setCards($0) }
+        case .didTapCellAt(let indexPath):
+            return state
+                .map { $0.cards }
+                .take(1)
+                .flatMap { [weak self] (cards) -> Observable<Mutation> in
+                    if let card = cards[safe: indexPath.row] {
+                        self?.delegate?.show(card: card)
+                    }
+                    return .empty()
+                }
         case .addButtonTapped:
             delegate?.addCard()
             return .empty()
         }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var copy = state
+        switch mutation {
+        case .setCards(let cards):
+            copy.cards = cards
+        }
+        return copy
     }
 }

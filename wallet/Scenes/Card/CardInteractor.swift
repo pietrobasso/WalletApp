@@ -18,6 +18,7 @@ protocol CardInteractorDelegate: class {
 }
 
 struct CardState {
+    let card: Card
     let snapshotImage: UIImage?
     var presenting: Bool
 }
@@ -37,9 +38,9 @@ class CardInteractor: CardViewControllerOutput, CardPresenterInput, RxStateful {
     
     weak var delegate: CardInteractorDelegate?
     
-    init(dependencies: Dependencies, snapshotImage: UIImage?) {
+    init(dependencies: Dependencies, card: Card,  snapshotImage: UIImage?) {
         self.dependencies = dependencies
-        initialState = CardState(snapshotImage: snapshotImage, presenting: false)
+        initialState = CardState(card: card, snapshotImage: snapshotImage, presenting: false)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
