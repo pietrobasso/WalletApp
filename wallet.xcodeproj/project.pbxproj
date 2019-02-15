@@ -18,6 +18,7 @@
 		B20B9BD22216C483005CEF61 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BD12216C483005CEF61 /* Highlightable.swift */; };
 		B20B9BD42216C495005CEF61 /* Shrinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BD32216C495005CEF61 /* Shrinkable.swift */; };
 		B20B9BD62216C4AF005CEF61 /* ShrinkableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BD52216C4AF005CEF61 /* ShrinkableButton.swift */; };
+		B20B9BD92216C5DD005CEF61 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BD82216C5DD005CEF61 /* CardCell.swift */; };
 		B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BDE2216D091005CEF61 /* Array+Safe.swift */; };
 		B20B9BE62216D0C7005CEF61 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE12216D0C7005CEF61 /* UICollectionView+Reusable.swift */; };
 		B20B9BE72216D0C7005CEF61 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE22216D0C7005CEF61 /* Reusable.swift */; };
@@ -70,6 +71,7 @@
 		B20B9BD12216C483005CEF61 /* Highlightable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlightable.swift; sourceTree = "<group>"; };
 		B20B9BD32216C495005CEF61 /* Shrinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shrinkable.swift; sourceTree = "<group>"; };
 		B20B9BD52216C4AF005CEF61 /* ShrinkableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkableButton.swift; sourceTree = "<group>"; };
+		B20B9BD82216C5DD005CEF61 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		B20B9BDE2216D091005CEF61 /* Array+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		B20B9BE12216D0C7005CEF61 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
 		B20B9BE22216D0C7005CEF61 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				B20B9BCA2216B9B8005CEF61 /* UIButton */,
+				B20B9BD72216C5CA005CEF61 /* UICollectionViewCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,6 +214,14 @@
 				B20B9BEB2216FD54005CEF61 /* Gradientable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B20B9BD72216C5CA005CEF61 /* UICollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BD82216C5DD005CEF61 /* CardCell.swift */,
+			);
+			path = UICollectionViewCell;
 			sourceTree = "<group>";
 		};
 		B20B9BDD2216D081005CEF61 /* Array */ = {
@@ -590,6 +601,7 @@
 				B20B9BD42216C495005CEF61 /* Shrinkable.swift in Sources */,
 				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
+				B20B9BD92216C5DD005CEF61 /* CardCell.swift in Sources */,
 				B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */,
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
