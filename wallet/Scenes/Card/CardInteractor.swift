@@ -19,7 +19,7 @@ protocol CardInteractorDelegate: class {
 
 struct CardState {
     let snapshotImage: UIImage?
-    var shouldDismiss: Bool
+    var presenting: Bool
 }
 
 class CardInteractor: CardViewControllerOutput, CardPresenterInput, RxStateful {
@@ -29,7 +29,7 @@ class CardInteractor: CardViewControllerOutput, CardPresenterInput, RxStateful {
     typealias Dependencies = UserDefaultsServiceProvider
     
     enum Mutation {
-        case dismissAnimated
+        case animateCard(Bool)
     }
     
     let initialState: CardState
@@ -39,26 +39,28 @@ class CardInteractor: CardViewControllerOutput, CardPresenterInput, RxStateful {
     
     init(dependencies: Dependencies, snapshotImage: UIImage?) {
         self.dependencies = dependencies
-        initialState = CardState(snapshotImage: snapshotImage, shouldDismiss: false)
+        initialState = CardState(snapshotImage: snapshotImage, presenting: false)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewLoaded:
             return .empty()
+        case .viewAppeared:
+            return .just(.animateCard(true))
         case .presentingCompleted:
             delegate?.dismissAction()
             return .empty()
         case .dismissButtonTapped:
-            return .just(.dismissAnimated)
+            return .just(.animateCard(false))
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var copy = state
         switch mutation {
-        case .dismissAnimated:
-            copy.shouldDismiss = true
+        case .animateCard(let presenting):
+            copy.presenting = presenting
         }
         return copy
     }

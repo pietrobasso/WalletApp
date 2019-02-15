@@ -22,7 +22,7 @@ class CardPresenter: CardViewControllerInput {
     // MARK: CardViewControllerInput
     let title: Driver<String>
     let snapshotImage: Driver<UIImage?>
-    let dismissCard: Driver<Void>
+    let animateCard: Driver<Bool>
     let mainButtonTitle: Driver<String>
     
     init(input: CardPresenterInput) {
@@ -32,11 +32,11 @@ class CardPresenter: CardViewControllerInput {
         snapshotImage = input.state
             .map { $0.snapshotImage }
             .asDriver(onErrorJustReturn: nil)
-        dismissCard = input.state
-            .map { $0.shouldDismiss }
-            .filter { $0 }
-            .map { _ in () }
-            .asDriver(onErrorJustReturn: ())
+        animateCard = input.state
+            .map { $0.presenting }
+            .skip(1)
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
         mainButtonTitle = input.state
             .map { _ in "Done" }
             .asDriver(onErrorJustReturn: "")

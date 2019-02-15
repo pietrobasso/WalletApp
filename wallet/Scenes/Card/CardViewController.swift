@@ -16,7 +16,7 @@ import RxCocoa
 protocol CardViewControllerInput {
     var title: Driver<String> { get }
     var snapshotImage: Driver<UIImage?> { get }
-    var dismissCard: Driver<Void> { get }
+    var animateCard: Driver<Bool> { get }
     var mainButtonTitle: Driver<String> { get }
 }
 
@@ -26,6 +26,7 @@ protocol CardViewControllerOutput {
 
 enum CardAction {
     case viewLoaded
+    case viewAppeared
     case dismissButtonTapped
     case presentingCompleted
 }
@@ -97,8 +98,7 @@ class CardViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animateSnapshot(presenting: true)
-        animateCardBackground(presenting: true)
+        output.action.onNext(.viewAppeared)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -150,8 +150,8 @@ class CardViewController: UIViewController {
         input.snapshotImage.asObservable()
             .bind(to: snapshotImageView.rx.image)
             .disposed(by: disposeBag)
-        input.dismissCard.asObservable()
-            .bind(to: rx.dismissCard)
+        input.animateCard.asObservable()
+            .bind(to: rx.animateCard)
             .disposed(by: disposeBag)
         input.mainButtonTitle.asObservable()
             .bind(to: dismissButton.rx.title())
@@ -222,10 +222,10 @@ class CardViewController: UIViewController {
 }
 
 extension Reactive where Base: CardViewController {
-    var dismissCard: Binder<Void> {
-        return Binder(base) { (viewController, _) in
-            viewController.animateSnapshot(presenting: false)
-            viewController.animateCardBackground(presenting: false)
+    var animateCard: Binder<Bool> {
+        return Binder(base) { (viewController, presenting) in
+            viewController.animateSnapshot(presenting: presenting)
+            viewController.animateCardBackground(presenting: presenting)
         }
     }
 }
