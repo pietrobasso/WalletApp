@@ -62,11 +62,12 @@ class CardViewController: UIViewController {
         return view
     }()
     private lazy var dismissButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.Wallet.red
+        let button = HighlightedButton()
+        button.backgroundColor = UIColor.Wallet.red.fillColor
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
         button.layer.cornerRadius = Theme.current().buttonCornerRadius
+        button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

@@ -21,10 +21,18 @@ class CardsPresenter: CardsViewControllerInput {
     
     // MARK: CardsViewControllerInput
     let title: Driver<String>
+    let dataSource: Driver<[CardCellViewModel]>
     
     init(input: CardsPresenterInput) {
         title = input.state
             .map { state -> String in "Cards" }
             .asDriver(onErrorJustReturn: "")
+        dataSource = input.state
+            .map { state in
+                var dataSource = Set<CardCellViewModel>()
+                for _ in 0...6 { dataSource.insert(CardCellViewModel.random) }
+                return Array(dataSource)
+            }
+            .asDriver(onErrorJustReturn: [])
     }
 }

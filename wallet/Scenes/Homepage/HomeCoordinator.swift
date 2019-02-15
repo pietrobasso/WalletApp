@@ -20,9 +20,13 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
     weak var delegate: CoordinatorDelegate?
     private let dependencies: AppDependencies
     private let navigationControllerDelegate = CustomNavigationControllerDelegate { (navigationController, viewController, animated) in
-        navigationController.navigationBar.prefersLargeTitles = true
-        if viewController is HomeTabBarController {
+        switch viewController {
+        case let viewController where viewController is HomeTabBarController:
             navigationController.navigationBar.isHidden = true
+            navigationController.navigationBar.prefersLargeTitles = false
+        default:
+            navigationController.navigationBar.isHidden = false
+            navigationController.navigationBar.prefersLargeTitles = true
         }
     }
     

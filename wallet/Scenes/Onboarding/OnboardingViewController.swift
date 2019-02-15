@@ -48,7 +48,7 @@ class OnboardingViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.heavy)
-        label.textColor = UIColor.Wallet.black
+        label.textColor = UIColor.Wallet.black.fillColor
         label.textAlignment = .center
         label.numberOfLines = 2
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -77,7 +77,7 @@ class OnboardingViewController: UIViewController {
     }()
     private lazy var continueButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.Wallet.red
+        button.backgroundColor = UIColor.Wallet.red.fillColor
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
         button.layer.cornerRadius = Theme.current().buttonCornerRadius

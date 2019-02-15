@@ -15,6 +15,7 @@ import RxCocoa
 
 protocol CardsViewControllerInput {
     var title: Driver<String> { get }
+    var dataSource: Driver<[CardCellViewModel]> { get }
 }
 
 protocol CardsViewControllerOutput {
@@ -31,8 +32,24 @@ class CardsViewController: UIViewController {
     let input: CardsViewControllerInput
     let output: CardsViewControllerOutput
     private let disposeBag = DisposeBag()
+    private var dataSource = [CardCellViewModel]()
     
     // MARK: - Views
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: (view.frame.size.width - 10) / 2.0, height: 80)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(cellType: CardCell.self)
+        collectionView.delaysContentTouches = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        return collectionView
+    }()
     
     // MARK: - Lifecycle
     
@@ -55,15 +72,17 @@ class CardsViewController: UIViewController {
     }
 
     private func setupAppearance() {
-        let gradientLayer = CAGradientLayer(frame: view.frame,
-                                            color: .radicalRed,
-                                            startPoint: CGPoint(x: 1, y: 1),
-                                            endPoint: CGPoint(x: 0, y: 0))
-        view.layer.insertSublayer(gradientLayer, at: 0)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonTapped))
+        collectionView.backgroundColor = .white
     }
     
-    private func addSubviews() {}
+    private func addSubviews() {
+        view.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
     
     private func setupBindings() {
         input.title.asObservable()
@@ -75,9 +94,38 @@ class CardsViewController: UIViewController {
                 self?.tabBarItem.title = title
             })
             .disposed(by: disposeBag)
+        input.dataSource
+            .drive(onNext: { [weak self] (dataSource) in
+                self?.dataSource = dataSource
+                self?.collectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc private func addButtonTapped() {
+        output.action.onNext(.addButtonTapped)
+    }
+}
+
+// MARK: - Extension: UICollectionViewDataSource
+extension CardsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let viewModel = dataSource[safe: indexPath.row] else { return UICollectionViewCell() }
+        let cell = collectionView.dequeueReusableCell(for: indexPath) as CardCell
+        cell.configure(with: viewModel)
+        return cell
+    }
+    
+    
+}
+
+// MARK: - Extension: UICollectionViewDelegate
+extension CardsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         output.action.onNext(.addButtonTapped)
     }
 }
