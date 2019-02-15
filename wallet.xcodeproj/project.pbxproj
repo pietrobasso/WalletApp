@@ -13,6 +13,13 @@
 		B20B9BC22215A91E005CEF61 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBE2215A91E005CEF61 /* CardViewController.swift */; };
 		B20B9BC32215A91E005CEF61 /* CardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBF2215A91E005CEF61 /* CardInteractor.swift */; };
 		B20B9BC62215B974005CEF61 /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BC52215B974005CEF61 /* UIView+Snapshot.swift */; };
+		B20B9BCF2216C069005CEF61 /* CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BCE2216C069005CEF61 /* CAGradientLayer.swift */; };
+		B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BDE2216D091005CEF61 /* Array+Safe.swift */; };
+		B20B9BE62216D0C7005CEF61 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE12216D0C7005CEF61 /* UICollectionView+Reusable.swift */; };
+		B20B9BE72216D0C7005CEF61 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE22216D0C7005CEF61 /* Reusable.swift */; };
+		B20B9BE82216D0C7005CEF61 /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE32216D0C7005CEF61 /* UITableView+Reusable.swift */; };
+		B20B9BE92216D0C7005CEF61 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE42216D0C7005CEF61 /* NibLoadable.swift */; };
+		B20B9BEA2216D0C7005CEF61 /* NibOwnerLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE52216D0C7005CEF61 /* NibOwnerLoadable.swift */; };
 		B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5C22157E7C00DF308A /* RxKeyboard.swift */; };
 		B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5D22157E7C00DF308A /* RxStateful.swift */; };
 		B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6022157E8E00DF308A /* PageCoordinator.swift */; };
@@ -52,6 +59,13 @@
 		B20B9BBE2215A91E005CEF61 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		B20B9BBF2215A91E005CEF61 /* CardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInteractor.swift; sourceTree = "<group>"; };
 		B20B9BC52215B974005CEF61 /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
+		B20B9BCE2216C069005CEF61 /* CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayer.swift; sourceTree = "<group>"; };
+		B20B9BDE2216D091005CEF61 /* Array+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
+		B20B9BE12216D0C7005CEF61 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
+		B20B9BE22216D0C7005CEF61 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		B20B9BE32216D0C7005CEF61 /* UITableView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
+		B20B9BE42216D0C7005CEF61 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		B20B9BE52216D0C7005CEF61 /* NibOwnerLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibOwnerLoadable.swift; sourceTree = "<group>"; };
 		B2664D5C22157E7C00DF308A /* RxKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxKeyboard.swift; sourceTree = "<group>"; };
 		B2664D5D22157E7C00DF308A /* RxStateful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxStateful.swift; sourceTree = "<group>"; };
 		B2664D6022157E8E00DF308A /* PageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
@@ -151,10 +165,39 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		B20B9BCD2216C057005CEF61 /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BCE2216C069005CEF61 /* CAGradientLayer.swift */,
+			);
+			path = CALayer;
+			sourceTree = "<group>";
+		};
+		B20B9BDD2216D081005CEF61 /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BDE2216D091005CEF61 /* Array+Safe.swift */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
+		B20B9BE02216D0C7005CEF61 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BE12216D0C7005CEF61 /* UICollectionView+Reusable.swift */,
+				B20B9BE22216D0C7005CEF61 /* Reusable.swift */,
+				B20B9BE32216D0C7005CEF61 /* UITableView+Reusable.swift */,
+				B20B9BE42216D0C7005CEF61 /* NibLoadable.swift */,
+				B20B9BE52216D0C7005CEF61 /* NibOwnerLoadable.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		B2664D5922157E7C00DF308A /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				B2664D5A22157E7C00DF308A /* Coordinator */,
+				B20B9BE02216D0C7005CEF61 /* Reusable */,
 				B2664D5B22157E7C00DF308A /* Rx */,
 			);
 			path = Libraries;
@@ -313,6 +356,8 @@
 		B2CCB21622156F0D0026479B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B20B9BDD2216D081005CEF61 /* Array */,
+				B20B9BCD2216C057005CEF61 /* CALayer */,
 				B2CCB21722156F220026479B /* UIColor */,
 				B20B9BC42215B961005CEF61 /* UIView */,
 			);
@@ -472,16 +517,21 @@
 				B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */,
 				B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */,
 				B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */,
+				B20B9BE92216D0C7005CEF61 /* NibLoadable.swift in Sources */,
 				B20B9BC62215B974005CEF61 /* UIView+Snapshot.swift in Sources */,
+				B20B9BE72216D0C7005CEF61 /* Reusable.swift in Sources */,
 				B2CCB21A22156F220026479B /* UIColor+Hex.swift in Sources */,
+				B20B9BCF2216C069005CEF61 /* CAGradientLayer.swift in Sources */,
 				B2CCB1F42215648B0026479B /* OnboardingCoordinator.swift in Sources */,
 				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
 				B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */,
 				B20B9BC22215A91E005CEF61 /* CardViewController.swift in Sources */,
 				B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */,
 				B20B9BBA2215A187005CEF61 /* TabPage.swift in Sources */,
+				B20B9BE82216D0C7005CEF61 /* UITableView+Reusable.swift in Sources */,
 				B2CCB21B22156F220026479B /* UIColor+Random.swift in Sources */,
 				B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */,
+				B20B9BEA2216D0C7005CEF61 /* NibOwnerLoadable.swift in Sources */,
 				B2CCB221221571CF0026479B /* Theme.swift in Sources */,
 				B20B9BC12215A91E005CEF61 /* CardPresenter.swift in Sources */,
 				B2CCB21422156C590026479B /* CardsInteractor.swift in Sources */,
@@ -498,8 +548,10 @@
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
 				B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */,
+				B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */,
 				B20B9BC02215A91E005CEF61 /* CardCoordinator.swift in Sources */,
 				B2CCB21222156C590026479B /* CardsPresenter.swift in Sources */,
+				B20B9BE62216D0C7005CEF61 /* UICollectionView+Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
