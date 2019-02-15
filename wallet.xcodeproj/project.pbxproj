@@ -165,8 +165,8 @@
 		B20B9BB82215A170005CEF61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B20B9BB92215A187005CEF61 /* TabPage.swift */,
 				B20B9BF92217084E005CEF61 /* Card.swift */,
+				B20B9BB92215A187005CEF61 /* TabPage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,9 +202,9 @@
 		B20B9BCA2216B9B8005CEF61 /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
+				B20B9BED2216FE42005CEF61 /* GradientButton.swift */,
 				B20B9BCB2216B9D4005CEF61 /* HighlightedButton.swift */,
 				B20B9BD52216C4AF005CEF61 /* ShrinkableButton.swift */,
-				B20B9BED2216FE42005CEF61 /* GradientButton.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -220,9 +220,9 @@
 		B20B9BD02216C473005CEF61 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B20B9BEB2216FD54005CEF61 /* Gradientable.swift */,
 				B20B9BD12216C483005CEF61 /* Highlightable.swift */,
 				B20B9BD32216C495005CEF61 /* Shrinkable.swift */,
-				B20B9BEB2216FD54005CEF61 /* Gradientable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
