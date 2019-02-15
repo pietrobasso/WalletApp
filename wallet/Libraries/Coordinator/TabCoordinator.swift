@@ -16,7 +16,7 @@ protocol TabProvider {
 }
 
 extension TabProvider where Self: Coordinator {
-    func addTab(coordinator: Coordinator, animated: Bool = true) {
+    func addTab(coordinator: Coordinator, animated: Bool = false) {
         add(child: coordinator)
         var viewControllers = tabController.viewControllers ?? []
         viewControllers.append(coordinator.viewController)
