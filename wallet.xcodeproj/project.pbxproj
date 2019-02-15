@@ -30,6 +30,7 @@
 		B20B9BF322170362005CEF61 /* UIButton+Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BF022170362005CEF61 /* UIButton+Toggle.swift */; };
 		B20B9BF422170362005CEF61 /* UICollectionViewCell+DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BF122170362005CEF61 /* UICollectionViewCell+DisposeBag.swift */; };
 		B20B9BF522170362005CEF61 /* UITableViewCell+DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BF222170362005CEF61 /* UITableViewCell+DisposeBag.swift */; };
+		B20B9BFA2217084E005CEF61 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BF92217084E005CEF61 /* Card.swift */; };
 		B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5C22157E7C00DF308A /* RxKeyboard.swift */; };
 		B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5D22157E7C00DF308A /* RxStateful.swift */; };
 		B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6022157E8E00DF308A /* PageCoordinator.swift */; };
@@ -86,6 +87,7 @@
 		B20B9BF022170362005CEF61 /* UIButton+Toggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Toggle.swift"; sourceTree = "<group>"; };
 		B20B9BF122170362005CEF61 /* UICollectionViewCell+DisposeBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+DisposeBag.swift"; sourceTree = "<group>"; };
 		B20B9BF222170362005CEF61 /* UITableViewCell+DisposeBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+DisposeBag.swift"; sourceTree = "<group>"; };
+		B20B9BF92217084E005CEF61 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		B2664D5C22157E7C00DF308A /* RxKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxKeyboard.swift; sourceTree = "<group>"; };
 		B2664D5D22157E7C00DF308A /* RxStateful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxStateful.swift; sourceTree = "<group>"; };
 		B2664D6022157E8E00DF308A /* PageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				B20B9BB92215A187005CEF61 /* TabPage.swift */,
+				B20B9BF92217084E005CEF61 /* Card.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */,
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
+				B20B9BFA2217084E005CEF61 /* Card.swift in Sources */,
 				B20B9BD62216C4AF005CEF61 /* ShrinkableButton.swift in Sources */,
 				B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */,
 				B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */,
