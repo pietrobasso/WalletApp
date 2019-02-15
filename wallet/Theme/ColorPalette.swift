@@ -9,51 +9,53 @@
 import UIKit
 
 extension UIColor {
-    struct Wallet {
-        // Color palette inspired from Apple Developer Human Interface Guidelines https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/
-        static let red = UIColor(netHex: 0xFF3B30)
-        static let orange = UIColor(netHex: 0xFF9500)
-        static let yellow = UIColor(netHex: 0xFFCC00)
-        static let green = UIColor(netHex: 0x4CD964)
-        static let tealBlue = UIColor(netHex: 0x5AC8FA)
-        static let blue = UIColor(netHex: 0x007AFF)
-        static let purple = UIColor(netHex: 0x5856D6)
-        static let pink = UIColor(netHex: 0xFF2D55)
-        // Additional colors inspired from iOS 7 colors http://ios7colors.zenimot.com
-        static let radicalRed = UIColor(netHex: 0xFB2B69)
-        static let black = UIColor(netHex: 0x2B2B2B)
-        static let gray = UIColor(netHex: 0x898C90)
+    /// Color palette inspired from [Apple Developer Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/).
+    ///
+    /// Additional colors inspired from [iOS 7 colors](http://ios7colors.zenimot.com).
+    ///
+    enum Wallet: CaseIterable, Equatable, Hashable {
+        case red
+        case radicalRed
+        case orange
+        case yellow
+        case green
+        case tealBlue
+        case blue
+        case purple
+        case pink
+        case black
+        case gray
     }
 }
 
-extension CAGradientLayer {
-    struct Wallet {
-        enum Color: CaseIterable {
-            case red
-            case radicalRed
-            case orange
-            case yellow
-            case green
-            case tealBlue
-            case blue
-            case purple
-            case pink
-            case black
-            case gray
+extension UIColor.Wallet {
+    var fillColor: UIColor {
+        switch self {
+        case .red:
+            return UIColor(netHex: 0xFF3B30)
+        case .radicalRed:
+            return UIColor(netHex: 0xFB2B69)
+        case .orange:
+            return UIColor(netHex: 0xFF9500)
+        case .yellow:
+            return UIColor(netHex: 0xFFCC00)
+        case .green:
+            return UIColor(netHex: 0x4CD964)
+        case .tealBlue:
+            return UIColor(netHex: 0x5AC8FA)
+        case .blue:
+            return UIColor(netHex: 0x007AFF)
+        case .purple:
+            return UIColor(netHex: 0x5856D6)
+        case .pink:
+            return UIColor(netHex: 0xFF2D55)
+        case .black:
+            return UIColor(netHex: 0x2B2B2B)
+        case .gray:
+            return UIColor(netHex: 0x898C90)
         }
     }
     
-    convenience init(frame: CGRect, color: Wallet.Color, startPoint: CGPoint = CGPoint(x: 0.5, y: 0.0), endPoint: CGPoint = CGPoint(x: 0.5, y: 1.0), locations: [NSNumber]? = nil) {
-        self.init()
-        self.frame = frame
-        self.colors = color.gradientColors
-        self.locations = locations
-        self.startPoint = startPoint
-        self.endPoint = endPoint
-    }
-}
-
-extension CAGradientLayer.Wallet.Color {
     var gradientColors: [CGColor] {
         switch self {
         case .red:
@@ -79,5 +81,11 @@ extension CAGradientLayer.Wallet.Color {
         case .gray:
             return [UIColor(netHex: 0xDBDDDE), UIColor(netHex: 0x898C90)].map { $0.cgColor }
         }
+    }
+}
+
+extension UIColor.Wallet {
+    static var brightColors: [UIColor.Wallet] {
+        return [.red, .radicalRed, .orange, .green, .purple, .pink]
     }
 }

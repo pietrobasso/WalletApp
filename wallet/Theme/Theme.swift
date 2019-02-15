@@ -27,14 +27,14 @@ public enum Theme: String {
     var mainColor: UIColor {
         switch self {
         case .default:
-            return UIColor.Wallet.black
+            return UIColor.Wallet.black.fillColor
         }
     }
     
     var secondaryColor: UIColor {
         switch self {
         case .default:
-            return UIColor.Wallet.red
+            return UIColor.Wallet.red.fillColor
         }
     }
     
