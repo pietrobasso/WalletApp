@@ -36,9 +36,17 @@ class CardCell: UICollectionViewCell, Reusable {
     }()
     
     // MARK: - Views
-    fileprivate lazy var button: ShrinkableGradientButton = {
-        let button = ShrinkableGradientButton()
+    fileprivate lazy var buttonContainer: ShrinkableButton = {
+        let button = ShrinkableButton()
+        button.backgroundColor = .clear
+        button.clipsToBounds = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    private lazy var button: GradientButton = {
+        let button = GradientButton()
         button.layer.cornerRadius = Theme.current().buttonCornerRadius
+        button.isUserInteractionEnabled = false
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -88,8 +96,7 @@ class CardCell: UICollectionViewCell, Reusable {
     func configure(with viewModel: CardCellViewModel) {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
-        button.backgroundColor = viewModel.color.fillColor
-        button.gradientLayer = CAGradientLayer(frame: button.frame,
+        button.gradientLayer = CAGradientLayer(frame: buttonContainer.frame,
                                                colors: viewModel.color.gradientColors,
                                                startPoint: CGPoint(x: 0, y: 0),
                                                endPoint: CGPoint(x: 1, y: 1))
@@ -101,27 +108,33 @@ class CardCell: UICollectionViewCell, Reusable {
     }
     
     private func addSubviews() {
-        addSubview(button)
-        button.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-        button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
-        button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
-        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
+        addSubview(buttonContainer)
+        buttonContainer.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        buttonContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
+        buttonContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        buttonContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
+        
+        buttonContainer.addSubview(button)
+        button.topAnchor.constraint(equalTo: buttonContainer.topAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: buttonContainer.leadingAnchor).isActive = true
+        button.bottomAnchor.constraint(equalTo: buttonContainer.bottomAnchor).isActive = true
+        button.trailingAnchor.constraint(equalTo: buttonContainer.trailingAnchor).isActive = true
         
         button.addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: button.topAnchor, constant: 5).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 2).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -2).isActive = true
         
         button.addSubview(descriptionLabel)
-        descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 2).isActive = true
+        descriptionLabel.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: -5).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -2).isActive = true
         
         titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor).isActive = true
         
-        addSubview(badgeView)
-        badgeView.topAnchor.constraint(equalTo: button.topAnchor, constant: -badgeInset).isActive = true
-        badgeView.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: badgeInset).isActive = true
+        buttonContainer.addSubview(badgeView)
+        badgeView.topAnchor.constraint(equalTo: buttonContainer.topAnchor, constant: -badgeInset).isActive = true
+        badgeView.trailingAnchor.constraint(equalTo: buttonContainer.trailingAnchor, constant: badgeInset).isActive = true
         badgeView.heightAnchor.constraint(equalToConstant: badgeHeight).isActive = true
         badgeView.widthAnchor.constraint(greaterThanOrEqualToConstant: badgeHeight).isActive = true
     }
@@ -137,7 +150,7 @@ class CardCell: UICollectionViewCell, Reusable {
 
 extension Reactive where Base: CardCell {
     var tap: ControlEvent<Void> {
-        return base.button.rx.tap
+        return base.buttonContainer.rx.tap
     }
     
     var viewModel: Binder<CardCellViewModel> {
