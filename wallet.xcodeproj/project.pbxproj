@@ -13,13 +13,19 @@
 		B20B9BC22215A91E005CEF61 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBE2215A91E005CEF61 /* CardViewController.swift */; };
 		B20B9BC32215A91E005CEF61 /* CardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BBF2215A91E005CEF61 /* CardInteractor.swift */; };
 		B20B9BC62215B974005CEF61 /* UIView+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BC52215B974005CEF61 /* UIView+Snapshot.swift */; };
+		B20B9BCC2216B9D4005CEF61 /* HighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BCB2216B9D4005CEF61 /* HighlightedButton.swift */; };
 		B20B9BCF2216C069005CEF61 /* CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BCE2216C069005CEF61 /* CAGradientLayer.swift */; };
+		B20B9BD22216C483005CEF61 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BD12216C483005CEF61 /* Highlightable.swift */; };
+		B20B9BD42216C495005CEF61 /* Shrinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BD32216C495005CEF61 /* Shrinkable.swift */; };
+		B20B9BD62216C4AF005CEF61 /* ShrinkableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BD52216C4AF005CEF61 /* ShrinkableButton.swift */; };
 		B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BDE2216D091005CEF61 /* Array+Safe.swift */; };
 		B20B9BE62216D0C7005CEF61 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE12216D0C7005CEF61 /* UICollectionView+Reusable.swift */; };
 		B20B9BE72216D0C7005CEF61 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE22216D0C7005CEF61 /* Reusable.swift */; };
 		B20B9BE82216D0C7005CEF61 /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE32216D0C7005CEF61 /* UITableView+Reusable.swift */; };
 		B20B9BE92216D0C7005CEF61 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE42216D0C7005CEF61 /* NibLoadable.swift */; };
 		B20B9BEA2216D0C7005CEF61 /* NibOwnerLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BE52216D0C7005CEF61 /* NibOwnerLoadable.swift */; };
+		B20B9BEC2216FD54005CEF61 /* Gradientable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BEB2216FD54005CEF61 /* Gradientable.swift */; };
+		B20B9BEE2216FE42005CEF61 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B9BED2216FE42005CEF61 /* GradientButton.swift */; };
 		B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5C22157E7C00DF308A /* RxKeyboard.swift */; };
 		B2664D5F22157E7C00DF308A /* RxStateful.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D5D22157E7C00DF308A /* RxStateful.swift */; };
 		B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6022157E8E00DF308A /* PageCoordinator.swift */; };
@@ -59,13 +65,19 @@
 		B20B9BBE2215A91E005CEF61 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		B20B9BBF2215A91E005CEF61 /* CardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInteractor.swift; sourceTree = "<group>"; };
 		B20B9BC52215B974005CEF61 /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
+		B20B9BCB2216B9D4005CEF61 /* HighlightedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedButton.swift; sourceTree = "<group>"; };
 		B20B9BCE2216C069005CEF61 /* CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayer.swift; sourceTree = "<group>"; };
+		B20B9BD12216C483005CEF61 /* Highlightable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlightable.swift; sourceTree = "<group>"; };
+		B20B9BD32216C495005CEF61 /* Shrinkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shrinkable.swift; sourceTree = "<group>"; };
+		B20B9BD52216C4AF005CEF61 /* ShrinkableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkableButton.swift; sourceTree = "<group>"; };
 		B20B9BDE2216D091005CEF61 /* Array+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		B20B9BE12216D0C7005CEF61 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
 		B20B9BE22216D0C7005CEF61 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		B20B9BE32216D0C7005CEF61 /* UITableView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
 		B20B9BE42216D0C7005CEF61 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		B20B9BE52216D0C7005CEF61 /* NibOwnerLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibOwnerLoadable.swift; sourceTree = "<group>"; };
+		B20B9BEB2216FD54005CEF61 /* Gradientable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradientable.swift; sourceTree = "<group>"; };
+		B20B9BED2216FE42005CEF61 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		B2664D5C22157E7C00DF308A /* RxKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxKeyboard.swift; sourceTree = "<group>"; };
 		B2664D5D22157E7C00DF308A /* RxStateful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxStateful.swift; sourceTree = "<group>"; };
 		B2664D6022157E8E00DF308A /* PageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
@@ -165,12 +177,40 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		B20B9BC92216B9AE005CEF61 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BCA2216B9B8005CEF61 /* UIButton */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B20B9BCA2216B9B8005CEF61 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BCB2216B9D4005CEF61 /* HighlightedButton.swift */,
+				B20B9BD52216C4AF005CEF61 /* ShrinkableButton.swift */,
+				B20B9BED2216FE42005CEF61 /* GradientButton.swift */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
 		B20B9BCD2216C057005CEF61 /* CALayer */ = {
 			isa = PBXGroup;
 			children = (
 				B20B9BCE2216C069005CEF61 /* CAGradientLayer.swift */,
 			);
 			path = CALayer;
+			sourceTree = "<group>";
+		};
+		B20B9BD02216C473005CEF61 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B20B9BD12216C483005CEF61 /* Highlightable.swift */,
+				B20B9BD32216C495005CEF61 /* Shrinkable.swift */,
+				B20B9BEB2216FD54005CEF61 /* Gradientable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		B20B9BDD2216D081005CEF61 /* Array */ = {
@@ -255,11 +295,13 @@
 				B2CCB1E522155C6A0026479B /* LaunchScreen.storyboard */,
 				B2664D5922157E7C00DF308A /* Libraries */,
 				B20B9BB82215A170005CEF61 /* Models */,
+				B20B9BD02216C473005CEF61 /* Protocols */,
 				B2CCB1EE221563E90026479B /* Scenes */,
 				B2CCB1FE221564F70026479B /* Services */,
 				B2CCB1DB22155C690026479B /* Supporting Files */,
 				B2CCB21F221571BD0026479B /* Theme */,
 				B2CCB21C221570FC0026479B /* Utils */,
+				B20B9BC92216B9AE005CEF61 /* Views */,
 			);
 			path = wallet;
 			sourceTree = "<group>";
@@ -514,9 +556,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2CCB1CA22155C690026479B /* AppDependencies.swift in Sources */,
+				B20B9BEC2216FD54005CEF61 /* Gradientable.swift in Sources */,
 				B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */,
 				B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */,
 				B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */,
+				B20B9BCC2216B9D4005CEF61 /* HighlightedButton.swift in Sources */,
 				B20B9BE92216D0C7005CEF61 /* NibLoadable.swift in Sources */,
 				B20B9BC62215B974005CEF61 /* UIView+Snapshot.swift in Sources */,
 				B20B9BE72216D0C7005CEF61 /* Reusable.swift in Sources */,
@@ -540,15 +584,19 @@
 				B2CCB21122156C590026479B /* CardsCoordinator.swift in Sources */,
 				B2664D6922157E8E00DF308A /* TabCoordinator.swift in Sources */,
 				B2CCB1F62215648B0026479B /* OnboardingViewController.swift in Sources */,
+				B20B9BEE2216FE42005CEF61 /* GradientButton.swift in Sources */,
 				B20B9BC32215A91E005CEF61 /* CardInteractor.swift in Sources */,
 				B2664D6722157E8E00DF308A /* RootCoordinator.swift in Sources */,
+				B20B9BD42216C495005CEF61 /* Shrinkable.swift in Sources */,
 				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
 				B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */,
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
+				B20B9BD62216C4AF005CEF61 /* ShrinkableButton.swift in Sources */,
 				B2664D5E22157E7C00DF308A /* RxKeyboard.swift in Sources */,
 				B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */,
+				B20B9BD22216C483005CEF61 /* Highlightable.swift in Sources */,
 				B20B9BC02215A91E005CEF61 /* CardCoordinator.swift in Sources */,
 				B2CCB21222156C590026479B /* CardsPresenter.swift in Sources */,
 				B20B9BE62216D0C7005CEF61 /* UICollectionView+Reusable.swift in Sources */,
