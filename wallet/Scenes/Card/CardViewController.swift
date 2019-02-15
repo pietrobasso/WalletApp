@@ -44,12 +44,12 @@ class CardViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    private lazy var backgroundOverlayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.alpha = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private lazy var backgroundOverlayButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .black
+        button.alpha = 0
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     private lazy var cardBackgroundView: UIView = {
         let view = UIView()
@@ -71,9 +71,9 @@ class CardViewController: UIViewController {
     }()
     private var snapshotWidthConstraint: NSLayoutConstraint?
     private var snapshotHeightConstraint: NSLayoutConstraint?
-    private var snapshotCenterYConstraint: NSLayoutConstraint?
     private var cardBackgroundBottomConstraint: NSLayoutConstraint?
     private var statusBarStyle: UIStatusBarStyle = .lightContent
+    private let cardHeight: CGFloat = 0.92
     
     // MARK: - Lifecycle
     
@@ -117,24 +117,23 @@ class CardViewController: UIViewController {
         view.addSubview(snapshotImageView)
         snapshotWidthConstraint = snapshotImageView.widthAnchor.constraint(equalTo: view.widthAnchor)
         snapshotHeightConstraint = snapshotImageView.heightAnchor.constraint(equalTo: view.heightAnchor)
-        snapshotCenterYConstraint = snapshotImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        snapshotImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         snapshotImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         snapshotWidthConstraint?.isActive = true
         snapshotHeightConstraint?.isActive = true
-        snapshotCenterYConstraint?.isActive = true
         
-        view.addSubview(backgroundOverlayView)
-        backgroundOverlayView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundOverlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        backgroundOverlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        backgroundOverlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        view.addSubview(backgroundOverlayButton)
+        backgroundOverlayButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundOverlayButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundOverlayButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundOverlayButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         view.addSubview(cardBackgroundView)
         cardBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         cardBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         cardBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        cardBackgroundView.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.6).isActive = true
-        cardBackgroundBottomConstraint = cardBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.size.height * 0.6)
+        cardBackgroundView.heightAnchor.constraint(equalToConstant: view.frame.size.height * cardHeight).isActive = true
+        cardBackgroundBottomConstraint = cardBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.size.height * cardHeight)
         cardBackgroundBottomConstraint?.isActive = true
         
         cardBackgroundView.addSubview(dismissButton)
@@ -164,19 +163,25 @@ class CardViewController: UIViewController {
                 self?.output.action.onNext(.dismissButtonTapped)
             })
             .disposed(by: disposeBag)
+        backgroundOverlayButton.rx.tap
+            .asSignal()
+            .debounce(0.2)
+            .emit(onNext: { [weak self] _ in
+                self?.output.action.onNext(.dismissButtonTapped)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureSnapshot(presenting: Bool) {
         let aspectRatio = (snapshotImageView.frame.size.height / snapshotImageView.frame.size.width)
-        snapshotHeightConstraint?.constant = presenting ? aspectRatio * -40 : 0
-        snapshotWidthConstraint?.constant = presenting ? -40 : 0
-        snapshotCenterYConstraint?.constant = presenting ? -2 : 0
+        snapshotHeightConstraint?.constant = presenting ? aspectRatio * -35 : 0
+        snapshotWidthConstraint?.constant = presenting ? -35 : 0
         statusBarStyle = presenting ? .lightContent : .default
     }
     
     fileprivate func animateSnapshot(presenting: Bool) {
         UIView.animate(withDuration: 0.1) { [weak self] in
-            self?.backgroundOverlayView.alpha = presenting ? 0.3 : 0
+            self?.backgroundOverlayButton.alpha = presenting ? 0.3 : 0
         }
         UIView.animate(withDuration: presenting ? 0.3 : 0.6,
                        delay: 0,
@@ -209,7 +214,8 @@ class CardViewController: UIViewController {
                        initialSpringVelocity: 1,
                        options: presenting ? .curveEaseOut : .curveEaseIn,
                        animations: { [weak self] in
-                        self?.cardBackgroundBottomConstraint?.constant = presenting ? 0 : self?.view.frame.size.height ?? 1 * 0.6
+                        guard let height = self?.view.frame.size.height, let cardHeight = self?.cardHeight else { return }
+                        self?.cardBackgroundBottomConstraint?.constant = presenting ? 0 : height * cardHeight
                         self?.view.layoutIfNeeded()
             }, completion: nil)
     }
