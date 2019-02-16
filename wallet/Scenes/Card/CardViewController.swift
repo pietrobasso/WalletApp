@@ -107,7 +107,7 @@ class CardViewController: UIViewController {
     private var snapshotWidthConstraint: NSLayoutConstraint?
     private var snapshotHeightConstraint: NSLayoutConstraint?
     private var cardBackgroundBottomConstraint: NSLayoutConstraint?
-    private var statusBarStyle: UIStatusBarStyle = .lightContent
+    private var statusBarStyle: UIStatusBarStyle = .default
     private let cardHeight: CGFloat = 0.92
     
     // MARK: - Lifecycle
