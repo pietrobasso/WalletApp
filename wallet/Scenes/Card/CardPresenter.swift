@@ -23,7 +23,6 @@ class CardPresenter: CardViewControllerInput {
     let title: Driver<String>
     let mainEmoji: Driver<String>
     let description: Driver<String>
-    let snapshotImage: Driver<UIImage?>
     let animateCard: Driver<Bool>
     let mainButtonTitle: Driver<String>
     
@@ -40,9 +39,6 @@ class CardPresenter: CardViewControllerInput {
             .map { $0.card.descriptor.welcomeText }
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: "")
-        snapshotImage = input.state
-            .map { $0.snapshotImage }
-            .asDriver(onErrorJustReturn: nil)
         animateCard = input.state
             .map { $0.presenting }
             .skip(1)
