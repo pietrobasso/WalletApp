@@ -1,6 +1,4 @@
-# Wallet
-
-<p align="center"><img src=".images/project-cover.png" alt="Wallet - A Sample application project"></p>
+<p align="center"><img src=".images/project-cover.png" alt="Wallet - A Sample application project" height="300"></p>
 
 Wallet is an example of what you can achieve using VIP and Coordinator architectural patterns, together with a little 🕊 RxSwift magic ✨. Enjoy!
 
