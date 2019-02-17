@@ -25,6 +25,6 @@ class AppDependenciesProvider: AppDependencies {
     // MARK: - Managers 
     // Managers can depend on services 
     lazy var cardsManager: CardsManager = {
-        return MockedCardsManager(cardsCount: 5)
+        return MockedCardsManager(cardsCount: 25)
     }()
 }
