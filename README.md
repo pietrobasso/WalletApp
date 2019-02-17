@@ -6,7 +6,7 @@ Wallet is an example of what you can achieve using VIP and Coordinator architect
 - 🖼 VIP architectural pattern
 - 👨‍✈️ [Coordinator](http://khanlou.com/2015/10/coordinators-redux/) architectural pattern
 - 🕊 [RxSwift](https://github.com/ReactiveX/RxSwift)
-- 🚀 [fastlane](fastlane.tools)
+- 🚀 [fastlane](https://fastlane.tools)
 - 🌊 [Fluid animations](https://developer.apple.com/videos/play/wwdc2018/803/)
 - 🤷‍ Minimal external dependencies (RxSwift only)
 
