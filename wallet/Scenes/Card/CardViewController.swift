@@ -14,7 +14,6 @@ import RxSwift
 import RxCocoa
 
 protocol CardViewControllerInput {
-    var snapshotImage: Driver<UIImage?> { get }
     var animateCard: Driver<Bool> { get }
     var title: Driver<String> { get }
     var mainEmoji: Driver<String> { get }
@@ -40,10 +39,8 @@ class CardViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // MARK: - Views
-    private lazy var snapshotImageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        view.clipsToBounds = true
+    private lazy var snapshotView: UIView = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -107,7 +104,7 @@ class CardViewController: UIViewController {
     private var snapshotWidthConstraint: NSLayoutConstraint?
     private var snapshotHeightConstraint: NSLayoutConstraint?
     private var cardBackgroundBottomConstraint: NSLayoutConstraint?
-    private var statusBarStyle: UIStatusBarStyle = .lightContent
+    private var statusBarStyle: UIStatusBarStyle = .default
     private let cardHeight: CGFloat = 0.92
     
     // MARK: - Lifecycle
@@ -143,19 +140,9 @@ class CardViewController: UIViewController {
         return .fade
     }
 
-    private func setupAppearance() {
-        view.backgroundColor = .black
-    }
+    private func setupAppearance() { }
     
     private func addSubviews() {
-        view.addSubview(snapshotImageView)
-        snapshotWidthConstraint = snapshotImageView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        snapshotHeightConstraint = snapshotImageView.heightAnchor.constraint(equalTo: view.heightAnchor)
-        snapshotImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        snapshotImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        snapshotWidthConstraint?.isActive = true
-        snapshotHeightConstraint?.isActive = true
-        
         view.addSubview(backgroundOverlayButton)
         backgroundOverlayButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         backgroundOverlayButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -191,10 +178,15 @@ class CardViewController: UIViewController {
         input.title.asObservable()
             .bind(to: rx.title)
             .disposed(by: disposeBag)
-        input.snapshotImage.asObservable()
-            .bind(to: snapshotImageView.rx.image)
+        input.animateCard.asObservable()
+            .take(1)
+            .do(onNext: { [weak self] _ in
+                self?.addSnapshotView()
+            })
+            .bind(to: rx.animateCard)
             .disposed(by: disposeBag)
         input.animateCard.asObservable()
+            .skip(1)
             .bind(to: rx.animateCard)
             .disposed(by: disposeBag)
         input.title.asObservable()
@@ -222,8 +214,25 @@ class CardViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    private func addSnapshotView() {
+        snapshotView = {
+            guard let view = presentingViewController?.view.snapshotView(afterScreenUpdates: true) else { return snapshotView }
+            view.clipsToBounds = true
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        view.insertSubview(snapshotView, at: 0)
+        view.backgroundColor = .black
+        snapshotWidthConstraint = snapshotView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        snapshotHeightConstraint = snapshotView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        snapshotView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        snapshotView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        snapshotWidthConstraint?.isActive = true
+        snapshotHeightConstraint?.isActive = true
+    }
+    
     private func configureSnapshot(presenting: Bool) {
-        let aspectRatio = (snapshotImageView.frame.size.height / snapshotImageView.frame.size.width)
+        let aspectRatio = (snapshotView.frame.size.height / snapshotView.frame.size.width)
         snapshotHeightConstraint?.constant = presenting ? aspectRatio * -35 : 0
         snapshotWidthConstraint?.constant = presenting ? -35 : 0
         statusBarStyle = presenting ? .lightContent : .default
@@ -239,7 +248,7 @@ class CardViewController: UIViewController {
                        initialSpringVelocity: 1,
                        options: presenting ? .curveEaseOut : .curveEaseIn,
                        animations: { [weak self] in
-                        self?.snapshotImageView.layer.cornerRadius = presenting ? Theme.current().buttonCornerRadius : 0
+                        self?.snapshotView.layer.cornerRadius = presenting ? Theme.current().buttonCornerRadius : 0
             }, completion: nil)
         UIView.animate(withDuration: 0.6,
                        delay: 0,

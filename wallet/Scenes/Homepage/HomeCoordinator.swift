@@ -92,7 +92,7 @@ extension HomeCoordinator: CardsCoordinatorDelegate {
     }
     
     func show(card: Card) {
-        let coordinator = CardCoordinator(dependencies: dependencies, card: card, snapshotImage: viewController.view.makeSnapshot())
+        let coordinator = CardCoordinator(dependencies: dependencies, card: card)
         coordinator.delegate = self
         present(child: coordinator, animated: false)
         coordinator.start()

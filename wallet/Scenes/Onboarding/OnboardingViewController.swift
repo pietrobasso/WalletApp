@@ -15,7 +15,7 @@ import RxCocoa
 
 protocol OnboardingViewControllerInput {
     var title: Driver<String> { get }
-    var mainEmoji: Driver<String> { get }
+    var mainImage: Driver<UIImage?> { get }
     var description: Driver<String> { get }
     var buttonTitle: Driver<String> { get }
 }
@@ -41,7 +41,7 @@ class OnboardingViewController: UIViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.spacing = 10
+        stackView.spacing = 40
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -56,14 +56,12 @@ class OnboardingViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var emojiLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 80)
-        label.textAlignment = .center
-        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private lazy var mainImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
@@ -116,8 +114,10 @@ class OnboardingViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
         stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(emojiLabel)
+        stackView.addArrangedSubview(mainImageView)
         stackView.addArrangedSubview(descriptionLabel)
+        
+        mainImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         view.addSubview(continueButton)
         continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
@@ -132,8 +132,8 @@ class OnboardingViewController: UIViewController {
         input.title.asObservable()
             .bind(to: titleLabel.rx.text)
             .disposed(by: disposeBag)
-        input.mainEmoji.asObservable()
-            .bind(to: emojiLabel.rx.text)
+        input.mainImage.asObservable()
+            .bind(to: mainImageView.rx.image)
             .disposed(by: disposeBag)
         input.description.asObservable()
             .bind(to: descriptionLabel.rx.text)

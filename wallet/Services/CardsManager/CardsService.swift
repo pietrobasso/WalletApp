@@ -23,13 +23,16 @@ protocol CardsManager {
 class MockedCardsManager: CardsManager {
     let cards: Observable<[Card]>
     private let _cards = PublishSubject<[Card]>()
+    private let disposeBag = DisposeBag()
     
     init(cardsCount: Int) {
         cards = _cards
             .asObservable()
             .distinctUntilChanged()
             .share(replay: 1, scope: .forever)
-        cards.subscribe()
+        cards
+            .subscribe()
+            .disposed(by: disposeBag)
         var mockedCards = Set<Card>()
         for _ in 0..<cardsCount { mockedCards.insert(Card.random) }
         _cards.onNext(Array(mockedCards))

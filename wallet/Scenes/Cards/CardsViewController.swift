@@ -42,11 +42,10 @@ class CardsViewController: UIViewController {
         layout.itemSize = CGSize(width: (view.frame.size.width - 10) / 2.0, height: 80)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = NoDelayCollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(cellType: CardCell.self)
-        collectionView.delaysContentTouches = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         return collectionView
