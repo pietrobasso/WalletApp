@@ -48,7 +48,7 @@ For more information about `match` open [fastlane match git repo](https://docs.f
 
 Wallet is built in **Swift 4.2**. Therefore you must use Xcode 10 when working with this version of wallet.
 
-## App Architecture
+## Documentation
 A mobile application development usually starts from a mockup, containing the flow of the app view by view, and a specification document containing the app features. Starting from the mockup we can easily divide the app into scenes, where each scene represents a full screen view, while starting from the spec document we can define what data is being manipulated and how. A clear separation of the data layer from the scenes layer with a clear interface allows to develop them indipendently, to easily mock services and to test thoroughly every part of the app. We identified some basic architectural components to guide the development and keep the concerns separated. Keep in mind that these are only guidelines that can be adapted to each project depending on its complexity (i.e.: you should't create a 6 components architecture for a project printing 'hello world' to the console...).
 
 ### Scenes
@@ -57,25 +57,39 @@ The following image explains the ownership (weak/strong) relations between the o
 
 <p align="center"><img src=".images/lisca-scene.png" alt="Lisca scene"></p>
 
-#### View Controller
-The view layer is provided by the view controller. It holds and controls views and animations, and defines its inputs and outputs through input and output protocols.
+#### View Layer
+The view layer is provided by the view controller. It holds and controls views and animations, and defines its inputs and outputs through input and output protocols. The input and output protocols will be implemented by the presenter and the interactor (as explained in the next paragraph). The inputs are tipically a set of drivers emitting the view models to configure the views or triggering animations. The view controller should subscribe to those drivers or bind them directly to the views when possible. The output protocol tipically exposes an observer of the events coming from the user. Those events are tipically modeled with an enum type with a case for each event or action.
 
-#### Controller objects: Presenter and Interactor
-The control layer is provided by the controller objects. The controller objects implement the inputs and the outputs of the view controller and realize the business logic and the state management with the help of the service layer. The controller objects are the interactor, which implements the view controller outputs, and a presenter, which implements the view controller inputs. The interactor will transform view actions coming from the view controller into updates of the current state, optionally combining them with data and events coming from the dependencies. The presenter will receive the state updates from the interactor and formalize the state into the data needed to render the view. The process just described is modeled in the RxStateful protocol which helps to realize state and side effects management in a centralized and controlled fashion.
+#### Control Layer
+The control layer is provided by the controller objects. The controller objects implement the inputs and the outputs of the view controller and realize the business logic and the state management with the help of the service layer. The controller objects are the interactor, which implements the view controller outputs, and a presenter, which implements the view controller inputs. 
+
+##### Interactor
+The interactor will transform the events coming from the view controller into updates of the current state, optionally combining them with data and events coming from the dependencies. The process just described is modeled in the RxStateful protocol which helps to realize state and side effects management in a centralized and controlled fashion. The RxStateful protocol automatically manages the plumbing of the events flow and allows to implement the business logic by overriding some of its methods:
+- The transform(action) method is used to combine an action with other events from outside the scene.
+- The mutate(action) handles each action performing side-effects such as async tasks through workers or services and eventually commits one or more state mutations.
+- The transform(mutation) gives you the chance to handle a mutation or combine it with other events before its finally committed.
+- The reduce(state,mutation) method generates a new state with the previous state and the mutation. It should be purely functional so it should not perform any side-effects here. This method is called every time a mutation is committed.
+- The transform(state) method allows to transform the state stream. Usually this function is used to perform side-effects such as logging.
+
 The following image shows what data is passed between the objects composing a scene:
 
 <p align="center"><img src=".images/lisca-data-flow.png" alt="Lisca data flow"></p>
 
-#### Coordinator
-The navigation layer is provided by the coordinator. A coordinator is an object that instantiates, configures and displays one or more view controllers relative to a single scene, implementing all the driving logic. A coordinator presents/pushes/sets its children coordinators by presenting/pushing/setting their view controllers on its own view controller. The coordinator receives commands from the control layer which implements the coordinator input protocol.
+The logic implemented in the interactor should be isolated into pure functions as much as possible and those functions should be used just in the RxStateful methods. Sometimes different scenes share some business logic. To avoid duplicating those behaviors in each scene you could create a dedicated class, called Worker, which simply embeds the functions and is used by different scenes. Workers should fulfill a single purpose and are stateless.
 
-### Data
+##### Presenter
+The presenter will receive the state updates from the interactor as an observable sequence and will map the sequence into the differend drivers. Tipically helper methods are used to create the view models from the state object so that they are easily tetable.
+
+#### Coordinator
+The navigation layer is provided by the coordinator. A coordinator is an object that instantiates, configures and displays one or more view controllers relative to a single scene, implementing all the driving logic. A coordinator presents/pushes/sets its children coordinators by presenting/pushing/setting their view controllers on its own view controller. The coordinator receives commands from the interactor which implements the coordinator input protocol.
+
+### Data Layer
 
 #### Services
-The service layer provides data and data manipulation features to the app. Each service is usually a singleton held by and AppDependenciesProvider object which allows to provide to each scene just the services it needs through protocol composition. Each service should be indipendend from other services. Services are used by controllers (or interactors) and sometimes by coordinators (when the data from a service determines the app navigation).
+The service layer provides data and data manipulation features to the app. Each service is usually a singleton held by and AppDependenciesProvider object which allows to provide to each scene just the services it needs through protocol composition. Each service should be indipendend from other services and from scenes. Services are used by interactors and sometimes by coordinators (when the data from a service determines the app navigation).
 
 #### Managers
-Managers are a special kind of service which depends on other services.
+Sometimes the state of an application cannot be confined in a single scene, and sometimes different scenes depend upon a more general, app-wide state. This state is managed by Manager objects. Managers can depend on other services but are owned by the same AppDependenciesProvider and can be injected in the scenes just like normal services.
 
 ## Advanced Configuration
 By default the lisca project template provides two build configurations (debug and release) and a single build scheme which runs with the debug configuration and archives with the release configuration.
