@@ -10,8 +10,7 @@ import UIKit
 
 enum TabPage {
     case cards
-    case offers
-    case settings
+    case user
 }
 
 extension TabPage {
@@ -34,14 +33,21 @@ extension TabPage {
 }
 
 extension TabPage.Descriptor {
+    var title: String {
+        switch tabPage {
+        case .cards:
+            return "Cards"
+        case .user:
+            return "You"
+        }
+    }
+    
     var image: UIImage? {
         switch tabPage {
         case .cards:
             return #imageLiteral(resourceName: "icon-card").withRenderingMode(.alwaysTemplate)
-        case .offers:
-            return #imageLiteral(resourceName: "icon-card").withRenderingMode(.alwaysTemplate)
-        case .settings:
-            return #imageLiteral(resourceName: "icon-card").withRenderingMode(.alwaysTemplate)
+        case .user:
+            return #imageLiteral(resourceName: "icon-user").withRenderingMode(.alwaysTemplate)
         }
     }
     
