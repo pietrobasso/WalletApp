@@ -43,9 +43,20 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
     }
     
     func start() {
-        (tabController as? HomeTabBarController)?.customDelegate = self
-        setupOnboarding()
-        add(page: .cards)
+        let completion: () -> () = { [weak self] in
+            (self?.tabController as? HomeTabBarController)?.customDelegate = self
+            self?.setupOnboarding()
+            self?.add(page: .cards)
+        }
+        guard dependencies.userDefaultsService.hasValue(for: .loggedIn) else {
+            completion()
+            return
+        }
+        dependencies.localAuthenticationService.authenticate { [weak self] (result) in
+            guard case let .success(success) = result, success else { return }
+            self?.dependencies.userDefaultsService.set(value: true, for: .loggedIn)
+            completion()
+        }
     }
     
     private func setupOnboarding() {
