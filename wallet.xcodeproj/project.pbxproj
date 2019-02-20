@@ -42,6 +42,13 @@
 		B2BBC502221D4B4A0043846D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC501221D4B4A0043846D /* Result.swift */; };
 		B2BBC504221D4BDD0043846D /* LocalAuthenticationService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC503221D4BDC0043846D /* LocalAuthenticationService+Rx.swift */; };
 		B2BBC506221D4DEA0043846D /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC505221D4DEA0043846D /* AuthenticationState.swift */; };
+		B2BBC5DD221D653E0043846D /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5D9221D653E0043846D /* UserCoordinator.swift */; };
+		B2BBC5DE221D653E0043846D /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5DA221D653E0043846D /* UserPresenter.swift */; };
+		B2BBC5DF221D653E0043846D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5DB221D653E0043846D /* UserViewController.swift */; };
+		B2BBC5E0221D653E0043846D /* UserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5DC221D653E0043846D /* UserInteractor.swift */; };
+		B2BBC5E2221D67070043846D /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5E1221D67070043846D /* Action.swift */; };
+		B2BBC5E4221D68770043846D /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5E3221D68770043846D /* Section.swift */; };
+		B2BBC5E7221D69D60043846D /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5E6221D69D60043846D /* ActionCell.swift */; };
 		B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C522155C690026479B /* AppDelegate.swift */; };
 		B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C722155C690026479B /* AppCoordinator.swift */; };
 		B2CCB1CA22155C690026479B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C922155C690026479B /* AppDependencies.swift */; };
@@ -103,6 +110,13 @@
 		B2BBC501221D4B4A0043846D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		B2BBC503221D4BDC0043846D /* LocalAuthenticationService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalAuthenticationService+Rx.swift"; sourceTree = "<group>"; };
 		B2BBC505221D4DEA0043846D /* AuthenticationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
+		B2BBC5D9221D653E0043846D /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
+		B2BBC5DA221D653E0043846D /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
+		B2BBC5DB221D653E0043846D /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		B2BBC5DC221D653E0043846D /* UserInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractor.swift; sourceTree = "<group>"; };
+		B2BBC5E1221D67070043846D /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		B2BBC5E3221D68770043846D /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		B2BBC5E6221D69D60043846D /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		B2CCB1C222155C690026479B /* wallet-debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wallet-debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CCB1C522155C690026479B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2CCB1C722155C690026479B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -171,8 +185,10 @@
 		B20B9BB82215A170005CEF61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B2BBC5E1221D67070043846D /* Action.swift */,
 				B2BBC505221D4DEA0043846D /* AuthenticationState.swift */,
 				B20B9BF92217084E005CEF61 /* Card.swift */,
+				B2BBC5E3221D68770043846D /* Section.swift */,
 				B20B9BB92215A187005CEF61 /* TabPage.swift */,
 			);
 			path = Models;
@@ -199,9 +215,10 @@
 		B20B9BC92216B9AE005CEF61 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B25BE9D422196F6D0007D4BE /* UICollectionView */,
 				B20B9BCA2216B9B8005CEF61 /* UIButton */,
+				B25BE9D422196F6D0007D4BE /* UICollectionView */,
 				B20B9BD72216C5CA005CEF61 /* UICollectionViewCell */,
+				B2BBC5E5221D69C60043846D /* UITableViewCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -336,6 +353,25 @@
 			path = Result;
 			sourceTree = "<group>";
 		};
+		B2BBC5D8221D651C0043846D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B2BBC5D9221D653E0043846D /* UserCoordinator.swift */,
+				B2BBC5DC221D653E0043846D /* UserInteractor.swift */,
+				B2BBC5DA221D653E0043846D /* UserPresenter.swift */,
+				B2BBC5DB221D653E0043846D /* UserViewController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		B2BBC5E5221D69C60043846D /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B2BBC5E6221D69D60043846D /* ActionCell.swift */,
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
 		B2CCB1B922155C690026479B = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +452,7 @@
 				B2CCB20C221569E00026479B /* Cards */,
 				B2CCB207221568200026479B /* Homepage */,
 				B2CCB1EF221564610026479B /* Onboarding */,
+				B2BBC5D8221D651C0043846D /* User */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -644,6 +681,7 @@
 				B20B9BCF2216C069005CEF61 /* CAGradientLayer.swift in Sources */,
 				B2CCB1F42215648B0026479B /* OnboardingCoordinator.swift in Sources */,
 				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
+				B2BBC5DD221D653E0043846D /* UserCoordinator.swift in Sources */,
 				B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */,
 				B2BBC502221D4B4A0043846D /* Result.swift in Sources */,
 				B20B9BC22215A91E005CEF61 /* CardViewController.swift in Sources */,
@@ -666,21 +704,27 @@
 				B2664D6722157E8E00DF308A /* RootCoordinator.swift in Sources */,
 				B20B9BD42216C495005CEF61 /* Shrinkable.swift in Sources */,
 				B20B9BF422170362005CEF61 /* UICollectionViewCell+DisposeBag.swift in Sources */,
+				B2BBC5DF221D653E0043846D /* UserViewController.swift in Sources */,
 				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
 				B2BBC506221D4DEA0043846D /* AuthenticationState.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
 				B20B9BD92216C5DD005CEF61 /* CardCell.swift in Sources */,
 				B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */,
+				B2BBC5E0221D653E0043846D /* UserInteractor.swift in Sources */,
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
+				B2BBC5E4221D68770043846D /* Section.swift in Sources */,
 				B2BBC4FF221D4A1D0043846D /* LocalAuthenticationService.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
+				B2BBC5DE221D653E0043846D /* UserPresenter.swift in Sources */,
 				B20B9BFA2217084E005CEF61 /* Card.swift in Sources */,
 				B20B9BD62216C4AF005CEF61 /* ShrinkableButton.swift in Sources */,
 				B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */,
 				B20B9BF8221707D7005CEF61 /* CardsService.swift in Sources */,
 				B20B9BD22216C483005CEF61 /* Highlightable.swift in Sources */,
+				B2BBC5E7221D69D60043846D /* ActionCell.swift in Sources */,
 				B20B9BF322170362005CEF61 /* UIButton+Toggle.swift in Sources */,
 				B20B9BC02215A91E005CEF61 /* CardCoordinator.swift in Sources */,
+				B2BBC5E2221D67070043846D /* Action.swift in Sources */,
 				B2CCB21222156C590026479B /* CardsPresenter.swift in Sources */,
 				B20B9BE62216D0C7005CEF61 /* UICollectionView+Reusable.swift in Sources */,
 				B20B9BF522170362005CEF61 /* UITableViewCell+DisposeBag.swift in Sources */,
