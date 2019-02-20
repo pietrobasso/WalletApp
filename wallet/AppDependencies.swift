@@ -10,7 +10,7 @@ import Foundation
 
 // The dependencies protocol defines what services it provides by adopting the services providers protocols
 // i.e.: protocol AppDependencies: MyServiceProvider, MyManagerProvider { }
-protocol AppDependencies: UserDefaultsServiceProvider, CardsManagerProvider { }
+protocol AppDependencies: UserDefaultsServiceProvider, CardsManagerProvider, LocalAuthenticationServiceProvider { }
 
 /// Defines all the dependenceis to be injected throughout the app.
 class AppDependenciesProvider: AppDependencies {
@@ -20,6 +20,9 @@ class AppDependenciesProvider: AppDependencies {
     // MARK: - Services
     let userDefaultsService: UserDefaultsService = {
         return StandardUserDefaultsService()
+    }()
+    let localAuthenticationService: LocalAuthenticationService = {
+        return LocalAuthenticationServiceImplementation()
     }()
 
     // MARK: - Managers 

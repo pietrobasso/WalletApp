@@ -38,6 +38,10 @@
 		B2664D6722157E8E00DF308A /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6222157E8E00DF308A /* RootCoordinator.swift */; };
 		B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6322157E8E00DF308A /* NavigationCoordinator.swift */; };
 		B2664D6922157E8E00DF308A /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664D6422157E8E00DF308A /* TabCoordinator.swift */; };
+		B2BBC4FF221D4A1D0043846D /* LocalAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC4FE221D4A1D0043846D /* LocalAuthenticationService.swift */; };
+		B2BBC502221D4B4A0043846D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC501221D4B4A0043846D /* Result.swift */; };
+		B2BBC504221D4BDD0043846D /* LocalAuthenticationService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC503221D4BDC0043846D /* LocalAuthenticationService+Rx.swift */; };
+		B2BBC506221D4DEA0043846D /* AuthenticationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC505221D4DEA0043846D /* AuthenticationState.swift */; };
 		B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C522155C690026479B /* AppDelegate.swift */; };
 		B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C722155C690026479B /* AppCoordinator.swift */; };
 		B2CCB1CA22155C690026479B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C922155C690026479B /* AppDependencies.swift */; };
@@ -95,6 +99,10 @@
 		B2664D6222157E8E00DF308A /* RootCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		B2664D6322157E8E00DF308A /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		B2664D6422157E8E00DF308A /* TabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		B2BBC4FE221D4A1D0043846D /* LocalAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationService.swift; sourceTree = "<group>"; };
+		B2BBC501221D4B4A0043846D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		B2BBC503221D4BDC0043846D /* LocalAuthenticationService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalAuthenticationService+Rx.swift"; sourceTree = "<group>"; };
+		B2BBC505221D4DEA0043846D /* AuthenticationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationState.swift; sourceTree = "<group>"; };
 		B2CCB1C222155C690026479B /* wallet-debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wallet-debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CCB1C522155C690026479B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2CCB1C722155C690026479B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 		B20B9BB82215A170005CEF61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B2BBC505221D4DEA0043846D /* AuthenticationState.swift */,
 				B20B9BF92217084E005CEF61 /* Card.swift */,
 				B20B9BB92215A187005CEF61 /* TabPage.swift */,
 			);
@@ -283,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				B2664D5A22157E7C00DF308A /* Coordinator */,
+				B2BBC500221D4B4A0043846D /* Result */,
 				B20B9BE02216D0C7005CEF61 /* Reusable */,
 				B2664D5B22157E7C00DF308A /* RxStateful */,
 			);
@@ -307,6 +317,23 @@
 				B2664D5D22157E7C00DF308A /* RxStateful.swift */,
 			);
 			path = RxStateful;
+			sourceTree = "<group>";
+		};
+		B2BBC4FD221D49FF0043846D /* LocalAuthenticationService */ = {
+			isa = PBXGroup;
+			children = (
+				B2BBC4FE221D4A1D0043846D /* LocalAuthenticationService.swift */,
+				B2BBC503221D4BDC0043846D /* LocalAuthenticationService+Rx.swift */,
+			);
+			path = LocalAuthenticationService;
+			sourceTree = "<group>";
+		};
+		B2BBC500221D4B4A0043846D /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				B2BBC501221D4B4A0043846D /* Result.swift */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 		B2CCB1B922155C690026479B = {
@@ -408,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				B20B9BF6221707C2005CEF61 /* CardsManager */,
+				B2BBC4FD221D49FF0043846D /* LocalAuthenticationService */,
 				B2CCB1FF2215650E0026479B /* UserDefaultsService */,
 			);
 			path = Services;
@@ -605,6 +633,7 @@
 				B2CCB1CA22155C690026479B /* AppDependencies.swift in Sources */,
 				B20B9BEC2216FD54005CEF61 /* Gradientable.swift in Sources */,
 				B2664D6522157E8E00DF308A /* PageCoordinator.swift in Sources */,
+				B2BBC504221D4BDD0043846D /* LocalAuthenticationService+Rx.swift in Sources */,
 				B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */,
 				B2664D6822157E8E00DF308A /* NavigationCoordinator.swift in Sources */,
 				B20B9BCC2216B9D4005CEF61 /* HighlightedButton.swift in Sources */,
@@ -616,6 +645,7 @@
 				B2CCB1F42215648B0026479B /* OnboardingCoordinator.swift in Sources */,
 				B2CCB223221571F60026479B /* ColorPalette.swift in Sources */,
 				B2CCB20B221568560026479B /* HomeTabBarController.swift in Sources */,
+				B2BBC502221D4B4A0043846D /* Result.swift in Sources */,
 				B20B9BC22215A91E005CEF61 /* CardViewController.swift in Sources */,
 				B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */,
 				B20B9BBA2215A187005CEF61 /* TabPage.swift in Sources */,
@@ -637,10 +667,12 @@
 				B20B9BD42216C495005CEF61 /* Shrinkable.swift in Sources */,
 				B20B9BF422170362005CEF61 /* UICollectionViewCell+DisposeBag.swift in Sources */,
 				B2CCB2012215650E0026479B /* UserDefaultsService.swift in Sources */,
+				B2BBC506221D4DEA0043846D /* AuthenticationState.swift in Sources */,
 				B2664D6622157E8E00DF308A /* Coordinator.swift in Sources */,
 				B20B9BD92216C5DD005CEF61 /* CardCell.swift in Sources */,
 				B2CCB20A221568560026479B /* HomeCoordinator.swift in Sources */,
 				B2CCB21E221571130026479B /* CustomNavigationControllerDelegate.swift in Sources */,
+				B2BBC4FF221D4A1D0043846D /* LocalAuthenticationService.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
 				B20B9BFA2217084E005CEF61 /* Card.swift in Sources */,
 				B20B9BD62216C4AF005CEF61 /* ShrinkableButton.swift in Sources */,
