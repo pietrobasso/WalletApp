@@ -15,7 +15,7 @@ class ActionCell: UITableViewCell, Reusable {
     // MARK: - Views
     fileprivate lazy var titleButton: UIButton = {
         let button = HighlightedButton()
-        button.backgroundColor = .white
+        button.backgroundColor = Theme.current().backgroundColor
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         button.contentHorizontalAlignment = .left
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -36,14 +36,14 @@ class ActionCell: UITableViewCell, Reusable {
     
     func configure(with descriptor: Action.Descriptor) {
         titleButton.setAttributedTitle(NSAttributedString(string: descriptor.title,
-                                                          attributes: [.foregroundColor: UIColor.Wallet.red.fillColor,
+                                                          attributes: [.foregroundColor: Theme.current().secondaryColor,
                                                                        .font: UIFont.systemFont(ofSize: 22, weight: .regular)]),
                                        for: .normal)
     }
     
     private func setupAppearance() {
         selectionStyle = .none
-        backgroundColor = .white
+        backgroundColor = Theme.current().backgroundColor
     }
     
     private func addSubviews() {

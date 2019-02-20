@@ -57,7 +57,7 @@ class CardCell: UICollectionViewCell, Reusable {
     private lazy var badgeView: UIButton = {
         let button = UIButton()
         button.contentEdgeInsets = UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6)
-        button.backgroundColor = UIColor.Wallet.red.fillColor
+        button.backgroundColor = Theme.current().secondaryColor
         button.clipsToBounds = true
         button.layer.cornerRadius = badgeHeight / 2
         button.translatesAutoresizingMaskIntoConstraints = false

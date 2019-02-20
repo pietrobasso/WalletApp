@@ -53,7 +53,7 @@ class CardViewController: UIViewController {
     }()
     private lazy var cardBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.current().backgroundColor
         view.clipsToBounds = true
         view.layer.cornerRadius = Theme.current().buttonCornerRadius
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -72,7 +72,7 @@ class CardViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 80, weight: UIFont.Weight.black)
-        label.textColor = UIColor.Wallet.black.fillColor
+        label.textColor = Theme.current().mainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
@@ -84,6 +84,7 @@ class CardViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.light)
+        label.textColor = Theme.current().mainColor
         label.textAlignment = .center
         label.numberOfLines = 0
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -93,8 +94,8 @@ class CardViewController: UIViewController {
     }()
     private lazy var dismissButton: UIButton = {
         let button = HighlightedButton()
-        button.backgroundColor = UIColor.Wallet.red.fillColor
-        button.titleLabel?.textColor = .white
+        button.backgroundColor = Theme.current().secondaryColor
+        button.titleLabel?.textColor = Theme.current().backgroundColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
         button.layer.cornerRadius = Theme.current().buttonCornerRadius
         button.clipsToBounds = true
@@ -104,7 +105,7 @@ class CardViewController: UIViewController {
     private var snapshotWidthConstraint: NSLayoutConstraint?
     private var snapshotHeightConstraint: NSLayoutConstraint?
     private var cardBackgroundBottomConstraint: NSLayoutConstraint?
-    private var statusBarStyle: UIStatusBarStyle = .default
+    private var statusBarStyle = Theme.current().statusBarStyle
     private let cardHeight: CGFloat = 0.92
     
     // MARK: - Lifecycle
@@ -235,7 +236,7 @@ class CardViewController: UIViewController {
         let aspectRatio = (snapshotView.frame.size.height / snapshotView.frame.size.width)
         snapshotHeightConstraint?.constant = presenting ? aspectRatio * -35 : 0
         snapshotWidthConstraint?.constant = presenting ? -35 : 0
-        statusBarStyle = presenting ? .lightContent : .default
+        statusBarStyle = presenting ? .lightContent : Theme.current().statusBarStyle
     }
     
     fileprivate func animateSnapshot(presenting: Bool) {

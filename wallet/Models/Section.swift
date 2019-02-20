@@ -36,14 +36,14 @@ extension Section.Descriptor {
     var headerView: UIView {
         let view: UIView = {
             let view = UIView()
-            view.backgroundColor = .white
+            view.backgroundColor = Theme.current().backgroundColor
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
         let label: UIView = {
             let button = UIButton()
             button.setTitle(section.title, for: .normal)
-            button.setTitleColor(UIColor.Wallet.black.fillColor, for: .normal)
+            button.setTitleColor(Theme.current().mainColor, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight.bold)
             button.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             button.setContentHuggingPriority(.defaultLow, for: .horizontal)
