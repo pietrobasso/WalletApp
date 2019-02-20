@@ -21,6 +21,7 @@ import UIKit
 ///
 public enum Theme: String {
     case `default` = "default"
+    case dark
     
     // MARK: - Colors
     
@@ -28,6 +29,8 @@ public enum Theme: String {
         switch self {
         case .default:
             return UIColor.Wallet.black.fillColor
+        case .dark:
+            return UIColor.white
         }
     }
     
@@ -35,6 +38,8 @@ public enum Theme: String {
         switch self {
         case .default:
             return UIColor.Wallet.red.fillColor
+        case .dark:
+            return UIColor.Wallet.radicalRed.fillColor
         }
     }
     
@@ -42,6 +47,8 @@ public enum Theme: String {
         switch self {
         case .default:
             return UIColor.white
+        case .dark:
+            return UIColor.Wallet.black.fillColor
         }
     }
     
@@ -49,22 +56,33 @@ public enum Theme: String {
     
     var defaultViewPadding: Float {
         switch self {
-        case .default:
+        case .default, .dark:
             return 30
         }
     }
     
     var defaultSpacing: Float {
         switch self {
-        case .default:
+        case .default, .dark:
             return 15
         }
     }
     
     var bottomPadding: Float {
         switch self {
-        case .default:
+        case .default, .dark:
             return 4
+        }
+    }
+    
+    // MARK: - Status Bar
+    
+    var statusBarStyle: UIStatusBarStyle {
+        switch self {
+        case .default:
+            return .default
+        case .dark:
+            return .lightContent
         }
     }
 
@@ -75,47 +93,49 @@ public enum Theme: String {
         switch self {
         case .default:
             return .default
+        case .dark:
+            return .black
         }
     }
     
     var navBackgroundColor: UIColor? {
         switch self {
-        case .default:
+        case .default, .dark:
             return nil
         }
     }
     
     var navBarTranslucent: Bool {
         switch self {
-        case .default:
+        case .default, .dark:
             return true
         }
     }
     
     var navBackgroundImage: UIImage? {
         switch self {
-        case .default:
+        case .default, .dark:
             return nil
         }
     }
     
     var navShadowImage: UIImage? {
         switch self {
-        case .default:
+        case .default, .dark:
             return UIImage()
         }
     }
     
     var navBackIndicatorImage: UIImage? {
         switch self {
-        case .default:
+        case .default, .dark:
             return nil
         }
     }
     
     var navBackIndicatorMask: UIImage? {
         switch self {
-        case .default:
+        case .default, .dark:
             return nil
         }
     }
@@ -124,14 +144,14 @@ public enum Theme: String {
     
     var buttonHeight: CGFloat {
         switch self {
-        case .default:
+        case .default, .dark:
             return 50
         }
     }
     
     var buttonCornerRadius: CGFloat {
         switch self {
-        case .default:
+        case .default, .dark:
             return 10
         }
     }
@@ -200,6 +220,7 @@ public extension Theme {
     }
     
     private static func customizeTabBars(with theme:Theme) {
+        UITabBar.appearance().barStyle = theme.navBarStyle
     }
     
     private static func customizeTabBarItems(with theme:Theme) {
@@ -242,6 +263,7 @@ public extension Theme {
     }
     
     private static func customizeSwitches(with theme:Theme) {
+        UISwitch.appearance().onTintColor = theme.secondaryColor
     }
     
     private static func customizeAlerts(with theme:Theme) {
