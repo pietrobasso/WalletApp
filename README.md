@@ -1,4 +1,4 @@
-<p align="center"><img src=".images/project-cover.png" alt="Wallet - A Sample application project" height="300"></p>
+<p align="center"><img src=".images/project-cover.png" alt="Wallet - A Sample application project" max-height="300"></p>
 
 Wallet is an example of what you can achieve using VIP and Coordinator architectural patterns, together with a little 🕊 RxSwift magic ✨. Enjoy!
 
@@ -8,11 +8,13 @@ Wallet is an example of what you can achieve using VIP and Coordinator architect
 - 🕊 [RxSwift](https://github.com/ReactiveX/RxSwift)
 - 🚀 [fastlane](https://fastlane.tools)
 - 🌊 [Fluid animations](https://developer.apple.com/videos/play/wwdc2018/803/)
+- ☝️ [LocalAuthentication](https://developer.apple.com/documentation/localauthentication)
 - 🤷‍ Minimal external dependencies (RxSwift only)
 
 ### Future evolutions
 - 📙 Database Service using [GRDB.swift](https://github.com/groue/GRDB.swift)
 - ⚡ [Haptics](https://developer.apple.com/documentation/uikit/animation_and_haptics)
+- 🌚 Dark Mode
 
 ## Project Setup
 

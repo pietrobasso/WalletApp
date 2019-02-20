@@ -114,8 +114,8 @@ extension CardsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel = dataSource[safe: indexPath.row] else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(for: indexPath) as CardCell
+        guard let viewModel = dataSource[safe: indexPath.row] else { return cell }
         cell.configure(with: viewModel)
         cell.rx.tap
             .asSignal()

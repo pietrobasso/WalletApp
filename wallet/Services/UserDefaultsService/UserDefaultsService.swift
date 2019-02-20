@@ -22,6 +22,7 @@ protocol UserDefaultsServiceProvider {
 /// Update this enum with new required keys
 public enum UserDefaultsKey: String {
     case onboardingCompleted
+    case loggedIn
 }
 
 final class StandardUserDefaultsService: UserDefaultsService {

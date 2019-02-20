@@ -43,9 +43,21 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
     }
     
     func start() {
-        (tabController as? HomeTabBarController)?.customDelegate = self
-        setupOnboarding()
-        add(page: .cards)
+        let completion: () -> () = { [weak self] in
+            (self?.tabController as? HomeTabBarController)?.customDelegate = self
+            self?.setupOnboarding()
+            self?.add(page: .cards)
+            self?.add(page: .user)
+        }
+        guard dependencies.userDefaultsService.hasValue(for: .loggedIn) else {
+            completion()
+            return
+        }
+        dependencies.localAuthenticationService.authenticate { [weak self] (result) in
+            guard case let .success(success) = result, success else { return }
+            self?.dependencies.userDefaultsService.set(value: true, for: .loggedIn)
+            completion()
+        }
     }
     
     private func setupOnboarding() {
@@ -58,7 +70,7 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
     }
     
     private func add(page: TabPage) {
-        let tabBarItem = UITabBarItem(title: nil, image: page.descriptor.image, selectedImage: page.descriptor.selectedImage)
+        let tabBarItem = UITabBarItem(title: page.descriptor.title, image: page.descriptor.image, selectedImage: page.descriptor.selectedImage)
         switch page {
         case .cards:
             let coordinator = CardsCoordinator(dependencies: dependencies)
@@ -66,8 +78,11 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
             coordinator.delegate = self
             addTab(coordinator: coordinator)
             coordinator.start()
-        default:
-            break
+        case .user:
+            let coordinator = UserCoordinator(dependencies: dependencies)
+            coordinator.viewController.tabBarItem = tabBarItem
+            addTab(coordinator: coordinator)
+            coordinator.start()
         }
     }
 }

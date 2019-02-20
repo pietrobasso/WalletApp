@@ -200,14 +200,14 @@ class CardViewController: UIViewController {
             .disposed(by: disposeBag)
         dismissButton.rx.tap
             .asSignal()
-            .debounce(0.2)
+            .throttle(0.2, latest: false)
             .emit(onNext: { [weak self] _ in
                 self?.output.action.onNext(.dismissButtonTapped)
             })
             .disposed(by: disposeBag)
         backgroundOverlayButton.rx.tap
             .asSignal()
-            .debounce(0.2)
+            .throttle(0.2, latest: false)
             .emit(onNext: { [weak self] _ in
                 self?.output.action.onNext(.dismissButtonTapped)
             })
