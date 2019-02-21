@@ -45,7 +45,7 @@ extension Action.Descriptor {
         case .donate:
             return "Donate to author"
         case .switchTheme:
-            return "Dark Mode"
+            return "Night Mode"
         }
     }
     
