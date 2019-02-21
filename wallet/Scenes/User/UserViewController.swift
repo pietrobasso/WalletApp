@@ -123,6 +123,14 @@ extension UserViewController: UITableViewDataSource {
                 self?.output.action.onNext(.didTapCellAt(indexPath))
             })
             .disposed(by: cell.rx.disposeBag)
+        cell.rx.switchIsOn
+            .asSignal(onErrorJustReturn: false)
+            .skip(1)
+            .debounce(0.2)
+            .emit(onNext: { [weak self] (isOn) in
+                self?.output.action.onNext(.didTapCellAt(indexPath))
+            })
+            .disposed(by: cell.rx.disposeBag)
         return cell
     }
     

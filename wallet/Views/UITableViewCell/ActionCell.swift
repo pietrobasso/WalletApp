@@ -21,6 +21,11 @@ class ActionCell: UITableViewCell, Reusable {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    fileprivate lazy var switchButton: UISwitch = {
+        let switchView = UISwitch()
+        switchView.translatesAutoresizingMaskIntoConstraints = false
+        return switchView
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,6 +44,9 @@ class ActionCell: UITableViewCell, Reusable {
                                                           attributes: [.foregroundColor: Theme.current().secondaryColor,
                                                                        .font: UIFont.systemFont(ofSize: 22, weight: .regular)]),
                                        for: .normal)
+        titleButton.isUserInteractionEnabled = descriptor.buttonIsEnabled
+        switchButton.isHidden = descriptor.switchIsHidden
+        switchButton.isOn = descriptor.switchIsOn
     }
     
     private func setupAppearance() {
@@ -52,12 +60,20 @@ class ActionCell: UITableViewCell, Reusable {
         titleButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         titleButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        
+        addSubview(switchButton)
+        switchButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        switchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
     }
 }
 
 extension Reactive where Base: ActionCell {
     var tap: ControlEvent<Void> {
         return base.titleButton.rx.tap
+    }
+    
+    var switchIsOn: ControlProperty<Bool> {
+        return base.switchButton.rx.isOn
     }
     
     var viewModel: Binder<Action.Descriptor> {
