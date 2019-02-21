@@ -57,7 +57,7 @@ class UserInteractor: UserViewControllerOutput, UserPresenterInput, RxStateful {
                     guard let action = action else { return .empty() }
                     switch action {
                     case .setPassword:
-                        return (self?.dependencies.localAuthenticationService as? LocalAuthenticationServiceImplementation)?.rx.authenticate()
+                        return self?.dependencies.localAuthenticationService.authenticate()
                             .asObservable()
                             .flatMap { [weak self] (result) -> Observable<Mutation> in
                                 guard case let .success(success) = result, success else { return .empty() }

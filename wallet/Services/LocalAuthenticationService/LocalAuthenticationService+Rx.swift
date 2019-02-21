@@ -9,12 +9,10 @@
 import RxSwift
 import RxCocoa
 
-extension LocalAuthenticationServiceImplementation: ReactiveCompatible {}
-
-extension Reactive where Base: LocalAuthenticationService {
+extension LocalAuthenticationService {
     func authenticate() -> Single<Result<Bool, Error>> {
         return Single.create { (single) in
-            self.base.authenticate() { (result) in
+            self.authenticate() { (result) in
                 single(.success(result))
             }
             return Disposables.create()
