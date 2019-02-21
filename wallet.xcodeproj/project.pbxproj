@@ -49,6 +49,7 @@
 		B2BBC5E2221D67070043846D /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5E1221D67070043846D /* Action.swift */; };
 		B2BBC5E4221D68770043846D /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5E3221D68770043846D /* Section.swift */; };
 		B2BBC5E7221D69D60043846D /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5E6221D69D60043846D /* ActionCell.swift */; };
+		B2BBC5F0221DB2DB0043846D /* SnapshotDissolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BBC5EC221DB2DA0043846D /* SnapshotDissolvingViewController.swift */; };
 		B2CCB1C622155C690026479B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C522155C690026479B /* AppDelegate.swift */; };
 		B2CCB1C822155C690026479B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C722155C690026479B /* AppCoordinator.swift */; };
 		B2CCB1CA22155C690026479B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCB1C922155C690026479B /* AppDependencies.swift */; };
@@ -117,6 +118,7 @@
 		B2BBC5E1221D67070043846D /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		B2BBC5E3221D68770043846D /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		B2BBC5E6221D69D60043846D /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		B2BBC5EC221DB2DA0043846D /* SnapshotDissolvingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDissolvingViewController.swift; sourceTree = "<group>"; };
 		B2CCB1C222155C690026479B /* wallet-debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wallet-debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CCB1C522155C690026479B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2CCB1C722155C690026479B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -372,6 +374,14 @@
 			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
+		B2BBC5E9221DB2B00043846D /* SnapshotDissolving */ = {
+			isa = PBXGroup;
+			children = (
+				B2BBC5EC221DB2DA0043846D /* SnapshotDissolvingViewController.swift */,
+			);
+			path = SnapshotDissolving;
+			sourceTree = "<group>";
+		};
 		B2CCB1B922155C690026479B = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +462,7 @@
 				B2CCB20C221569E00026479B /* Cards */,
 				B2CCB207221568200026479B /* Homepage */,
 				B2CCB1EF221564610026479B /* Onboarding */,
+				B2BBC5E9221DB2B00043846D /* SnapshotDissolving */,
 				B2BBC5D8221D651C0043846D /* User */,
 			);
 			path = Scenes;
@@ -716,6 +727,7 @@
 				B2BBC4FF221D4A1D0043846D /* LocalAuthenticationService.swift in Sources */,
 				B2CCB1F72215648B0026479B /* OnboardingInteractor.swift in Sources */,
 				B2BBC5DE221D653E0043846D /* UserPresenter.swift in Sources */,
+				B2BBC5F0221DB2DB0043846D /* SnapshotDissolvingViewController.swift in Sources */,
 				B20B9BFA2217084E005CEF61 /* Card.swift in Sources */,
 				B20B9BD62216C4AF005CEF61 /* ShrinkableButton.swift in Sources */,
 				B20B9BDF2216D091005CEF61 /* Array+Safe.swift in Sources */,

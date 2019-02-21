@@ -19,7 +19,7 @@ import UIKit
 ///
 ///     view.backgroundColor = Theme.current().backgroundColor
 ///
-public enum Theme: String {
+public enum Theme: String, CaseIterable {
     case `default` = "default"
     case dark
     
@@ -168,6 +168,15 @@ public extension Theme {
         }
     }
     
+    public static func next() {
+        switch Theme.current() {
+        case .default:
+            Theme.apply(theme: .dark)
+        case .dark:
+            Theme.apply(theme: .default)
+        }
+    }
+    
     public static func apply(theme: Theme) {
         UserDefaults.standard.set(theme.rawValue, forKey: selectedThemeKey)
         
@@ -221,6 +230,7 @@ public extension Theme {
     
     private static func customizeTabBars(with theme:Theme) {
         UITabBar.appearance().barStyle = theme.navBarStyle
+        UITabBar.appearance().tintColor = theme.secondaryColor
     }
     
     private static func customizeTabBarItems(with theme:Theme) {
