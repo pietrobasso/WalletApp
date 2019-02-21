@@ -11,12 +11,16 @@
 
 import UIKit
 
+protocol UserCoordinatorDelegate: AnyObject {
+    func switchTheme()
+}
+
 class UserCoordinator: NavigationCoordinator {
     var childrenCoordinators: [Coordinator] = []
     let viewController: UIViewController
     let navigationController: UINavigationController
 
-    weak var delegate: CoordinatorDelegate?
+    weak var delegate: UserCoordinatorDelegate?
     private let navigationControllerDelegate = CustomNavigationControllerDelegate { (navigationController, viewController, animated) in
         navigationController.navigationBar.prefersLargeTitles = true
     }
@@ -50,5 +54,9 @@ class UserCoordinator: NavigationCoordinator {
 extension UserCoordinator: UserInteractorDelegate {
     func open(url: URL) {
         UIApplication.shared.open(url)
+    }
+    
+    func switchTheme() {
+        delegate?.switchTheme()
     }
 }

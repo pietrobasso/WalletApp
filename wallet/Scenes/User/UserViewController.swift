@@ -38,7 +38,7 @@ class UserViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.rowHeight = 52
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = Theme.current().backgroundColor
         tableView.showsVerticalScrollIndicator = false
         tableView.keyboardDismissMode = .interactive
         tableView.separatorStyle = .singleLine
@@ -72,7 +72,7 @@ class UserViewController: UIViewController {
     }
 
     private func setupAppearance() {
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.current().backgroundColor
     }
     
     private func addSubviews() {
@@ -120,6 +120,14 @@ extension UserViewController: UITableViewDataSource {
             .asSignal()
             .throttle(0.1, latest: false)
             .emit(onNext: { [weak self] _ in
+                self?.output.action.onNext(.didTapCellAt(indexPath))
+            })
+            .disposed(by: cell.rx.disposeBag)
+        cell.rx.switchIsOn
+            .asSignal(onErrorJustReturn: false)
+            .skip(1)
+            .debounce(0.2)
+            .emit(onNext: { [weak self] (isOn) in
                 self?.output.action.onNext(.didTapCellAt(indexPath))
             })
             .disposed(by: cell.rx.disposeBag)

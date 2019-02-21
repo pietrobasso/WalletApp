@@ -10,6 +10,7 @@ enum Action {
     case setPassword
     case removePassword
     case feedback
+    case switchTheme
     case donate
 }
 
@@ -43,6 +44,35 @@ extension Action.Descriptor {
             return "Feedback"
         case .donate:
             return "Donate to author"
+        case .switchTheme:
+            return "Dark Mode"
+        }
+    }
+    
+    var buttonIsEnabled: Bool {
+        switch action {
+        case .switchTheme:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    var switchIsHidden: Bool {
+        switch action {
+        case .switchTheme:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    var switchIsOn: Bool {
+        switch action {
+        case .switchTheme:
+            return Theme.current() == .dark
+        default:
+            return false
         }
     }
 }

@@ -15,11 +15,16 @@ class ActionCell: UITableViewCell, Reusable {
     // MARK: - Views
     fileprivate lazy var titleButton: UIButton = {
         let button = HighlightedButton()
-        button.backgroundColor = .white
+        button.backgroundColor = Theme.current().backgroundColor
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         button.contentHorizontalAlignment = .left
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    fileprivate lazy var switchButton: UISwitch = {
+        let switchView = UISwitch()
+        switchView.translatesAutoresizingMaskIntoConstraints = false
+        return switchView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -36,14 +41,17 @@ class ActionCell: UITableViewCell, Reusable {
     
     func configure(with descriptor: Action.Descriptor) {
         titleButton.setAttributedTitle(NSAttributedString(string: descriptor.title,
-                                                          attributes: [.foregroundColor: UIColor.Wallet.red.fillColor,
+                                                          attributes: [.foregroundColor: Theme.current().secondaryColor,
                                                                        .font: UIFont.systemFont(ofSize: 22, weight: .regular)]),
                                        for: .normal)
+        titleButton.isUserInteractionEnabled = descriptor.buttonIsEnabled
+        switchButton.isHidden = descriptor.switchIsHidden
+        switchButton.isOn = descriptor.switchIsOn
     }
     
     private func setupAppearance() {
         selectionStyle = .none
-        backgroundColor = .white
+        backgroundColor = Theme.current().backgroundColor
     }
     
     private func addSubviews() {
@@ -52,12 +60,20 @@ class ActionCell: UITableViewCell, Reusable {
         titleButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         titleButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        
+        addSubview(switchButton)
+        switchButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        switchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
     }
 }
 
 extension Reactive where Base: ActionCell {
     var tap: ControlEvent<Void> {
         return base.titleButton.rx.tap
+    }
+    
+    var switchIsOn: ControlProperty<Bool> {
+        return base.switchButton.rx.isOn
     }
     
     var viewModel: Binder<Action.Descriptor> {

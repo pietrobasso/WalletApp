@@ -81,6 +81,7 @@ class HomeCoordinator: Coordinator, TabProvider, NavigationProvider {
         case .user:
             let coordinator = UserCoordinator(dependencies: dependencies)
             coordinator.viewController.tabBarItem = tabBarItem
+            coordinator.delegate = self
             addTab(coordinator: coordinator)
             coordinator.start()
         }
@@ -118,5 +119,23 @@ extension HomeCoordinator: CardsCoordinatorDelegate {
 extension HomeCoordinator: CardCoordinatorDelegate {
     func dismissCard(coordinator: Coordinator) {
         dismiss(child: coordinator, animated: false)
+    }
+}
+
+// MARK: - Extension: UserCoordinatorDelegate
+extension HomeCoordinator: UserCoordinatorDelegate {
+    func switchTheme() {
+        let snapshot = SnapshotDissolvingViewController()
+        snapshot.completion = { [weak self] (success) in
+            self?.viewController.dismiss(animated: false, completion: nil)
+        }
+        viewController.present(snapshot, animated: false) { [weak self] in
+            self?.childrenCoordinators.forEach { self?.removeTab(coordinator: $0) }
+            Theme.next()
+            self?.add(page: .cards)
+            self?.add(page: .user)
+            self?.tabController.selectedIndex = 1
+            snapshot.addSnapshot(at: 0)
+        }
     }
 }

@@ -73,7 +73,7 @@ class CardsViewController: UIViewController {
 
     private func setupAppearance() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonTapped))
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = Theme.current().backgroundColor
     }
     
     private func addSubviews() {
