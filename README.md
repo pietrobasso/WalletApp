@@ -9,12 +9,12 @@ Wallet is an example of what you can achieve using VIP and Coordinator architect
 - 🚀 [fastlane](https://fastlane.tools)
 - 🌊 [Fluid animations](https://developer.apple.com/videos/play/wwdc2018/803/)
 - ☝️ [LocalAuthentication](https://developer.apple.com/documentation/localauthentication)
+- 🌚 Night Mode
 - 🤷‍ Minimal external dependencies (RxSwift only)
 
 ### Future evolutions
 - 📙 Database Service using [GRDB.swift](https://github.com/groue/GRDB.swift)
 - ⚡ [Haptics](https://developer.apple.com/documentation/uikit/animation_and_haptics)
-- 🌚 Dark Mode
 
 ## Project Setup
 
